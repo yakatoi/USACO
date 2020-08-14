@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-
+//test
 public class Lifeguards {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("lifeguards.in"));
