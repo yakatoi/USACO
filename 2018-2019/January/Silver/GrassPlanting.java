@@ -7,7 +7,7 @@ public class GrassPlanting {
     PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("planting.out")));
     int n = Integer.parseInt(br.readLine());
     HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n-1; i++) {
       int[] inp = Arrays.stream(br.readLine().split(" ")).mapToInt(x -> Integer.parseInt(x)).toArray();
       addToHashMap(map, inp[0]);
       addToHashMap(map, inp[1]);

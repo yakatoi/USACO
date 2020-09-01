@@ -3,47 +3,46 @@ import java.io.*;
 
 public class Convention {
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("convention.in"));
     PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("convention.out")));
-    int[] inp = Arrays.stream(br.readLine().split(" ")).mapToInt(x -> Integer.parseInt(x)).toArray();
-    int n = inp[0];
-    int m = inp[1];
-    int c = inp[2];
+    String[] inp = br.readLine().split(" ");
+    int n = Integer.parseInt(inp[0]);
+    int m = Integer.parseInt(inp[1]);
+    int c = Integer.parseInt(inp[2]);
     int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(x -> Integer.parseInt(x)).toArray();
     Arrays.sort(arr);
-    Arrays.stream(arr).forEach(x -> System.out.print(x + " "));
     int lo = 0;
-    int hi = arr[n-1] - arr[0];
-
-    int ans = 0;
-
-    while(lo <= hi) {
-      int mid = (lo + hi)/2 ;
-      if(!check(arr, n, m, c, mid)){
-        ans = mid;
-        lo = mid+1;
-      }
-      else {
+    int hi = 1000000000;
+    //int hi = 9;
+    int mid = (lo+hi)/2;
+    while (lo<=hi) {
+      mid = (lo+hi)/2;
+      if (check(arr, mid, n, m, c)) {
         hi = mid-1;
-      }
-    }
-    System.out.println(ans+1);
-    pw.close();
-  }
-  public static boolean check(int[] arr, int n, int m, int c, int wait) {
-    boolean ans = true;
-    for (int i = 0; i < n; i+=c) {
-      if (i+c-1 < n) {
-        if (arr[i+c-1] - arr[i] > wait) {
-          ans = false;
-        }
+        mid = (lo+hi)/2;
       }
       else {
-        if (arr[n-1] - arr[i] > wait) {
-          ans = false;
-        }
+        lo = mid+1;
+        mid = (lo+hi)/2;
       }
     }
-    return ans;
+    mid++;
+    pw.println(mid);
+    pw.close();
+
+  }
+
+  public static boolean check(int[] arr, int mid, int n, int m, int c) {
+    int wagons = 1;
+	  int firstArrival = arr[0];
+	  int firstIndex = 0;
+	  for(int i=1; i<n; i++) {
+		if(arr[i] - firstArrival > mid || i + 1 - firstIndex > c) {
+			wagons += 1;
+			firstArrival = arr[i];
+			firstIndex = i;
+		}
+	}
+	return (wagons <= m);
   }
 }

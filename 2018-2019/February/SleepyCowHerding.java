@@ -5,23 +5,33 @@ public class SleepyCowHerding {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("herding.in"));
     PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("herding.out")));
-    int[] inp = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-    Arrays.sort(inp);
-    int a = inp[0];
-    int b = inp[1];
-    int c = inp[2];
-    int min = 0;
-    int max = Math.max(b-a, c-b)-1;
-    if (!(a+1==b && b+1==c)) {
-      if (a+1==b || b+1==c || b+2==c || a+2==b || a+2==c) {
-        min = 1;
-      }
-      else {
-        min = 2;
-      }
+    int n = Integer.parseInt(br.readLine());
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++) {
+      arr[i] = Integer.parseInt(br.readLine());
     }
-    pw.println(min);
-    pw.println(max);
+    Arrays.sort(arr);
+    int minans = minAns(arr, n);
+    int maxans = Math.max(arr[n-2]-arr[0], arr[n-1]-arr[1]) - (n-2);
+    pw.println(minans);
+    pw.println(maxans);
     pw.close();
+  }
+  public static int minAns(int[] A, int N) {
+    if (A[N-2]-A[0] == N-2 && A[N-1]-A[N-2]>2) {
+      return 2;
+    }
+    if (A[N-1]-A[1] == N-2 && A[1]-A[0]>2) {
+      return 2;
+    }
+    int j=0;
+    int best=0;
+    for (int i=0; i<N; i++) {
+      while (j<N-1 && A[j+1]-A[i]<=N-1) {
+        j++;
+      }
+      best = Math.max(best, j-i+1);
+    }
+    return N-best;
   }
 }
