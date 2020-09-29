@@ -2,93 +2,78 @@ import java.util.*;
 import java.io.*;
 
 public class MilkMeasurement {
-   public static void main(String[] args) throws IOException {
-      BufferedReader br = new BufferedReader(new FileReader("input.txt"));
-      PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("measurement.out")));
-      String[] nandg = br.readLine().split(" ");
-      int n = Integer.parseInt(nandg[0]);
-      int g = Integer.parseInt(nandg[1]);
-      Entry[] arr = new Entry[n];
-      for (int i = 0; i < n; i++) {
-         String[] inp = br.readLine().split(" ");
-         arr[i] = new Entry(Integer.parseInt(inp[0]), Integer.parseInt(inp[1]), Integer.parseInt(inp[2]));
-         }
-      Arrays.sort(arr);
-      for (int i = 0; i < n; i++) {
-         //System.out.println(arr[i].a + " " + arr[i].b + " " + arr[i].c);
-         }
-      int max = g;
-      int counter = 0;
-      HashSet<HashSet<Integer>> ans = new HashSet<HashSet<Integer>>();
-      HashSet<Integer> winners = new HashSet<Integer>();
-      HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-      boolean isEmpty = true;
-      int beforecounter = 0;
-      for (int i = 0; i < n; i++) {
-        isEmpty = winners.isEmpty();
-        beforecounter = counter;
-         ans.add(winners);
-         if (!map.keySet().contains(arr[i].b)) {
-            map.put(arr[i].b, g + arr[i].c);
-            if (g+arr[i].c >= max) {
-               counter++;
-               if (g+arr[i].c > max) {
-                  winners.clear();
-                  }
-               winners.add(arr[i].b);
-               max = g + arr[i].c;
-               }
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new FileReader("measurement.in"));
+    PrintWriter pw = new PrintWriter(new FileWriter("measurement.out"));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int n = Integer.parseInt(st.nextToken());
+    int g = Integer.parseInt(st.nextToken());
+    int[][] arr = new int[n][3];
+    for (int i = 0; i < n; i++) {
+      st = new StringTokenizer(br.readLine());
+      int a = Integer.parseInt(st.nextToken());
+      int b = Integer.parseInt(st.nextToken());
+      int c = Integer.parseInt(st.nextToken());
+      arr[i][0] = a;
+      arr[i][1] = b;
+      arr[i][2] = c;
+    }
+    Arrays.sort(arr, (a, b) -> a[0] - b[0]);
+    //System.out.println(Arrays.deepToString(arr));
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    HashSet<Integer> winners = new HashSet<Integer>();
+    int highGal = g;
+    int secHigh = g;
+    int counter = 0;
+    for (int i = 0; i < n; i++) {
+      if (map.keySet().contains(arr[i][1])) {
+        map.put(arr[i][1], map.get(arr[i][1]) + arr[i][2]);
+        if (winners.contains(arr[i][1])) {
+          if (winners.size() == 1) {
+            if (map.get(arr[i][1]) <= secHigh) {
+              winners.clear();
+              counter++;
+              highGal = secHigh;
             }
-         else {
-            map.replace(arr[i].b, map.get(arr[i].b) + arr[i].c);
-            if (winners.contains(arr[i].b) & map.get(arr[i].b) < max) {
-               winners.remove(arr[i].b);
-               counter++;
-               }
             else {
-               if (map.get(arr[i].b) > max) {
-                  max = map.get(arr[i].b);
-                  if (!winners.contains(arr[i].b)) {
-                     winners.clear();
-                     counter++;
-                     winners.add(arr[i].b);
-                     }
-                  }
-               else if (map.get(arr[i].b) == max & !winners.contains(arr[i].b)) {
-                  max = map.get(arr[i].b);
-                  if (!winners.contains(arr[i].b)) {
-                     counter++;
-                     }
-                  }
-               }
+                highGal = map.get(arr[i][1]);
             }
-            if (beforecounter==counter) {
-              if (winners.isEmpty()!= isEmpty) {
-                counter++;
-              }
+          }
+          else if (map.get(arr[i][1]) < highGal) {
+            counter++;
+            winners.remove(arr[i][1]);
+            if (winners.size()==1) {
+                secHigh = g;
             }
-         }
-      /*
-      1 1 2
-      4 2 -1
-      7 3 3
-      9 3 -1
-      */
-      for (HashSet<Integer> st: ans) {
-        System.out.println(st);
-      }
-      //pw.close();
+          }
 
+                  }
+        else {
+          if (map.get(arr[i][1])  >= highGal) {
+            counter++;
+            winners.clear();
+            winners.add(arr[i][1]);
+            secHigh = highGal;
+            highGal = map.get(arr[i][1]);
+          }
+        }
       }
-   public static class Entry implements Comparable<Entry>{
-      int a, b, c;
-      public Entry(int inpa, int inpb, int inpc){
-         a = inpa;
-         b = inpb;
-         c = inpc;
-         }
-      public int compareTo(Entry p){
-         return Integer.compare(a, p.a);
-         }
+      else {
+        map.put(arr[i][1], arr[i][2] + g);
+        if (map.get(arr[i][1]) >= highGal) {
+          if (map.get(arr[i][1]) != highGal) {
+            winners.clear();
+          }
+          counter++;
+          secHigh = highGal;
+          highGal = map.get(arr[i][1]);
+
+          winners.add(arr[i][1]);
+        }
       }
-   }
+    }
+    pw.println(counter);
+    pw.close();
+
+  }
+}

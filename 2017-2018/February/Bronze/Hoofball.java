@@ -29,8 +29,8 @@ public class Hoofball {
       }
     }
     int[] ballsto = new int[n];
-    ballsto[0] = dir[1]==-1?1:0;
-    ballsto[n-1] = dir[n-2]==1?1:0;
+    ballsto[0]    = dir[1]==-1?1:0;
+    ballsto[n-1]  = dir[n-2]==1?1:0;
     for (int i = 1; i < n-1; i++) {
       if (dir[i-1]==1) {
         ballsto[i]++;
