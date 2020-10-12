@@ -5,41 +5,57 @@ public class WhyDidTheCowCrossTheRoadI {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("helpcross.in"));
     PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("helpcross.out")));
-    String[] inp = br.readLine().split(" ");
-    int c = Integer.parseInt(inp[0]);
-    int n = Integer.parseInt(inp[1]);
-    int[] chi = new int[c];
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int c = Integer.parseInt(st.nextToken());
+    int n = Integer.parseInt(st.nextToken());
+    int[] chickens = new int[c];
     for (int i = 0; i < c; i++) {
-      chi[i] = Integer.parseInt(br.readLine());
+      chickens[i] = Integer.parseInt(br.readLine());
     }
-    int[][] moo = new int[n][2];
+    Range[] cows = new Range[n];
     for (int i = 0; i < n; i++) {
-      int[] inp1 = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-      moo[i][0] = inp1[0];
-      moo[i][1] = inp1[1];
+      st = new StringTokenizer(br.readLine());
+      int a = Integer.parseInt(st.nextToken());
+      int b = Integer.parseInt(st.nextToken());
+      cows[i] = new Range(a, b);
     }
-    Arrays.sort(moo, (a, b) -> Integer.compare(a[0], b[0]));
-    Arrays.sort(chi);
+    Arrays.sort(chickens);
+    Arrays.sort(cows);
     int counter = 0;
-    int a = 0;
-    int b = 0;
-    while (a < c && b < n) {
-      if (isBetween(moo[b][0], moo[b][1], chi[a])) {
+    int i = 0;
+    int j = 0;
+    while (i < c && j < n) {
+      if (cows[j].contains(chickens[i])) {
         counter++;
-        a++;
-        b++;
+        i++;
+        j++;
       }
-      else if (chi[a] < moo[b][0]) {
-        a++;
+      else if (chickens[i] < cows[j].a) {
+        i++;
       }
       else {
-        b++;
+        j++;
       }
     }
     pw.println(counter);
     pw.close();
+
   }
-  public static boolean isBetween(int a, int b, int c) {
-    return (c >= a && c <= b);
+  public static class Range implements Comparable<Range> {
+    public int a;
+    public int b;
+
+    public Range(int a, int b) {
+      this.a = a;
+      this.b = b;
+    }
+
+    public int compareTo(Range r) {
+      return b - r.b;
+    }
+
+    public boolean contains(int ch) {
+      return ch >= a && ch <= b;
+    }
   }
 }

@@ -3,58 +3,73 @@ import java.io.*;
 
 public class ClosingTheFarm {
 
-  public static HashMap<Integer, ArrayList<Integer>> graph;
+  public static HashMap<Integer, ArrayList<Integer>> graph = new HashMap<Integer, ArrayList<Integer>>();
 
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("closing.in"));
-    PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("closing.out")));
-    String[] inp = br.readLine().split(" ");
-    int n = Integer.parseInt(inp[0]);
-    int m = Integer.parseInt(inp[1]);
-    graph = new HashMap();
-    for (int i = 0; i < n; i++) {
+    PrintWriter pw = new PrintWriter(new FileWriter("closing.out"));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int n = Integer.parseInt(st.nextToken());
+    int m = Integer.parseInt(st.nextToken());
+    for (int i = 1; i <= n; i++) {
       graph.put(i, new ArrayList<Integer>());
     }
     for (int i = 0; i < m; i++) {
-      int[] inp1 = Arrays.stream(br.readLine().split(" ")).mapToInt(x -> Integer.parseInt(x)).toArray();
-      graph.get(inp1[0] - 1).add(inp1[1] -1);
-      graph.get(inp1[1] - 1).add(inp1[0] -1);
+      st = new StringTokenizer(br.readLine());
+      int a = Integer.parseInt(st.nextToken());
+      int b = Integer.parseInt(st.nextToken());
+      graph.get(a).add(b);
+      graph.get(b).add(a);
     }
-    for (int i = 0; i < n; i++) {
-      //pw.println(i + ":" + graph.get(i));
+    //System.out.println(graph);
+    HashSet<Integer> una = new HashSet<Integer>();
+    if (countBool(dfs(1, new boolean[n+1], una))==n) {
+      pw.println("YES");
     }
-    TreeSet<Integer> vert = new TreeSet<Integer>();
-    for (int i = 0; i < n; i++) {
-      vert.add(i);
+    else {
+      pw.println("NO");
     }
-    pw.println(numOfNodes(0, new boolean[n])==n?"YES":"NO");
-    for (int i = n-1; i > 1; i--) {
-      int rem = Integer.parseInt(br.readLine())-1;
-      graph.remove(rem);
-      vert.remove(rem);
-      for (int it: graph.keySet()) {
-        ArrayList<Integer> al = new ArrayList<Integer>(graph.get(it));
-        al.removeAll(Collections.singleton(rem));
-        graph.replace(it, al);
+    for (int i = 0; i < n-1; i++) {
+      int inp = Integer.parseInt(br.readLine());
+      una.add(inp);
+      if (countBool(dfs(1, new boolean[n+1], una))==n- i -1) {
+        pw.println("YES");
       }
-      pw.println(numOfNodes(vert.first(), new boolean[n])==i?"YES":"NO");
+      else {
+        pw.println("NO");
+      }
+
     }
-    pw.println("YES");
     pw.close();
 
+
   }
 
-  public static int numOfNodes(int node, boolean[] visited) {
-    visited[node] = true;
-    for (int it: graph.get(node)) {
-      if (!visited[it]) {
-        int useless = numOfNodes(it, visited);
+  public static int countBool(boolean[] arr) {
+    int counter = 0;
+    for (boolean bool : arr) {
+      if (bool) {
+        counter++;
       }
     }
-    int count = 0;
-    for (boolean bool : visited) {
-      count = bool ? count + 1 : count;
-    }
-    return count;
+    return counter;
   }
+
+  public static boolean[] dfs(int node, boolean[] visited, HashSet<Integer> una) {
+    if (una.contains(node)) {
+      return dfs(node+1, visited, una);
+    }
+    visited[node] = true;
+    for (int end : graph.get(node)) {
+      if (!una.contains(end) && !visited[end]) {
+        boolean[] mid = dfs(end, visited, una);
+        for (int i = 0; i < mid.length; i++) {
+          visited[i] = visited[i] || mid[i];
+        }
+      }
+    }
+    return visited;
+
+  }
+
 }
