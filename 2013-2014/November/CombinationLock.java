@@ -6,6 +6,7 @@ public class CombinationLock {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("combo.in"));
     PrintWriter pw = new PrintWriter(new FileWriter("combo.out"));
+
     int n = i(br.readLine());
     int[] john = Arrays.stream(br.readLine().split(" ")).mapToInt(x -> i(x)).toArray();
     int[] master = Arrays.stream(br.readLine().split(" ")).mapToInt(x -> i(x)).toArray();
