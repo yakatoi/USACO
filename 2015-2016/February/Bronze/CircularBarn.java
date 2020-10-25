@@ -7,20 +7,20 @@ public class CircularBarn {
     PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("cbarn.out")));
     StringTokenizer st = new StringTokenizer(br.readLine());
     int n = Integer.parseInt(st.nextToken());
-    int[] arr = new int[n];
+    int[] d = new int[n];
     int sum = 0;
     for (int i = 0; i < n; i++) {
-      arr[i] = Integer.parseInt(br.readLine());
-      sum+=arr[i];
+      d[i] = Integer.parseInt(br.readLine());
+      sum+=d[i];
     }
     int min = Integer.MAX_VALUE;
     for (int j = 0; j < n; j++) {
-      int footsteps = 0;
+      int num = 0;
       for (int i = j; i < j+n; i++) {
-        footsteps+=arr[i%n]*(i-j);
+        num+=d[i%n]*(i-j);
       }
-      if (footsteps < min) {
-        min = footsteps;
+      if (num < min) {
+        min = num;
       }
     }
     pw.println(min);

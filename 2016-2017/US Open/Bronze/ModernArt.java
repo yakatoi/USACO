@@ -1,69 +1,81 @@
-/*
-ID: srihank1
-LANG: JAVA
-PROG: template
-*/
 import java.util.*;
 import java.io.*;
 
 public class ModernArt {
-
-  public static class FastReader {/* Fast class in order to quickly read inputs*/
-
-     BufferedReader br;StringTokenizer st;
-      FastReader(InputStream stream) {
-         try {br = new BufferedReader(new InputStreamReader(stream));}
-         catch (Exception e) {e.printStackTrace();}}
-      public FastReader(String str) throws IOException {br = new BufferedReader(new FileReader(str));}
-      String next() {
-         while (st == null || !st.hasMoreElements()) {
-            try {st = new StringTokenizer(br.readLine());}
-            catch (IOException  e) {e.printStackTrace();}}
-         return st.nextToken();}
-      int nextInt() {
-         return Integer.parseInt(next());}
-      long nextLong() {
-         return Long.parseLong(next());}
-      double nextDouble() {
-         return Double.parseDouble(next());}
-      char nextChar() {
-         return (next().charAt(0));}
-      String nextLine() {String str = "";
-         try {str = br.readLine();}
-         catch (IOException e) {e.printStackTrace();}
-         return str;}}
-  public static void println(Object o) {System.out.println(o);}
-  public static void print(Object o)   {System.out.print(o);}
-  public static int  Int(String s)     {return Integer.parseInt(s);}
-  public static int  max(int... x)     {int curr = x[0];for (int n:x) {curr = Math.max(curr, n);}return curr;}
-  public static int  min(int... x)     {int curr = x[0];for (int n:x) {curr = Math.min(curr, n);}return curr;}
-
-   public static void main(String[] args) throws IOException{
-      String input1 = "art.in";
-      String input2 = "input.txt";
-      PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("art.out")));
-      FastReader sc = new FastReader(input2);
-      int n = sc.nextInt();
-      int[][] arr = new int[n][n];
-      for (int i = 0; i < n; i++) {
-        String[] inp = sc.nextLine().split("");
-        for (int j = 0; j < n; j++) {
-          arr[i][j] = Int(inp[j]);
+  public static int[][] arr;
+  public static int n;
+  public static void print2D() {for (int[] row : arr) {for (int ele : row) {System.out.print(ele);}System.out.println();}}
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new FileReader("art.in"));
+    PrintWriter pw = new PrintWriter(new FileWriter("art.out"));
+    HashSet<Integer> ans = new HashSet<Integer>();
+    HashSet<Integer> set = new HashSet<Integer>();
+    n = Integer.parseInt(br.readLine());
+    int[][] dim = new int[10][4];
+    arr = new int[n][n];
+    for (int i = 0; i < n; i++) {
+      String[] inp = br.readLine().split("");
+      for (int j = 0; j < n; j++) {
+        arr[i][j] = Integer.parseInt(inp[j]);
+        if (!set.contains(arr[i][j])) {
+          dim[arr[i][j]][0] = i;
+          dim[arr[i][j]][1] = i;
+          dim[arr[i][j]][2] = j;
+          dim[arr[i][j]][3] = j;
+          set.add(arr[i][j]);
+          ans.add(arr[i][j]);
+        }
+        else {
+          dim[arr[i][j]][0] = Math.min(dim[arr[i][j]][0], i);
+          dim[arr[i][j]][1] = Math.max(dim[arr[i][j]][1], i);
+          dim[arr[i][j]][2] = Math.min(dim[arr[i][j]][2], j);
+          dim[arr[i][j]][3] = Math.max(dim[arr[i][j]][3], j);
         }
       }
+    }
+    set.remove(0);
+    ans.remove(0);
+    for (int i = 0; i < 10; i++) {
+      if (set.contains(i)) {
+        //System.out.println(i + " : " + dim[i][0] + ", " + dim[i][1] + ", " + dim[i][2] + ", " + dim[i][3]);
+      }
+    }
+    for (int a = 0; a < 10; a++) {
+      for (int b = a + 1; b < 10; b++) {
+        if (set.contains(a) && set.contains(b)) {
+          if (isBet(dim[a][0], dim[a][1], dim[b][0], dim[b][1]) && isBet(dim[a][2], dim[a][3], dim[b][2], dim[b][3])) {
+            //System.out.println(a + " " + b);
+            int res = (count(a, b, dim, n));
+            ans.remove(res);
+          }
+        }
+      }
+    }
+    pw.println(ans.size());
+    pw.close();
+  }
+  public static boolean isBet(int a, int b, int c, int d) {
+    if (b==c || a==d) return true;
+    if (c < b && c >= a) return true;
+    if (d > a && d <= b) return true;
+    if (c <= a && c<= b && d>=a &&d >= b) return true;
+    if (a <= c && a<= d && b>=c && b>= d) return true;
+    return false;
 
-      /***
-      4
-      2230
-      2737
-      2777
-      0000
-      ***/
-      //FastReader sc = new FastReader(System.in);
-
-
-
-      pw.close();
-
-   }
+  }
+  public static boolean bet(int a, int b, int c) {return c >= a && c<= b;}
+  public static int count(int a, int b, int[][] dim, int n) {
+    for (int i = 0; i< n; i++) {
+      for (int j = 0; j < n; j++) {
+        if (bet(dim[a][0], dim[a][1], i) && bet(dim[a][2], dim[a][3], j) && bet(dim[b][0], dim[b][1], i) && bet(dim[b][2], dim[b][3], j)) {
+          if (arr[i][j]== a) return a;
+          else if (arr[i][j]== b) return b;
+          else {
+            return -1;
+          }
+        }
+      }
+    }
+    return -1;
+  }
 }
