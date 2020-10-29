@@ -1,9 +1,12 @@
 import java.util.*;
 public class StringTester
 {
-  public static int countChars(String work, char letter) {   return Collections.frequency(Arrays.asList(work.toCharArray()), letter);}
-    public static void main(String[] args) {
-      int res = countChars("test", 't');
-      System.out.println(res);
+  public static void main(String[] args) {
+    int[] arr = {1, 2, 3};
+    int i = 4;
+    int j = 2;
+    if (i >= 3 || arr[i]!=0) {
+      System.out.println("test");
     }
+  }
 }

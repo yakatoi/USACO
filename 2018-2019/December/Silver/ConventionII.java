@@ -6,85 +6,49 @@ public class ConventionII {
     BufferedReader br = new BufferedReader(new FileReader("convention2.in"));
     PrintWriter pw = new PrintWriter(new FileWriter("convention2.out"));
     int n = Integer.parseInt(br.readLine());
-    Cow[] arr = new Cow[n];
+    int[][] arr = new int[n][3];
+    StringTokenizer st;
     for (int i = 0; i < n; i++) {
-      StringTokenizer st = new StringTokenizer(br.readLine());
-      int a = Integer.parseInt(st.nextToken());
-      int t = Integer.parseInt(st.nextToken());
-      arr[i] = new Cow(i + 1, a, t);
+      st = new StringTokenizer(br.readLine());
+      arr[i][0] = i+1;
+      arr[i][1] = Integer.parseInt(st.nextToken());
+      arr[i][2] = Integer.parseInt(st.nextToken());
     }
-    Arrays.sort(arr, (a, b) -> (a.a - b.a));
-    for (Cow c : arr) {
-      //System.out.println(c);
+    Arrays.sort(arr, (a, b) -> (Integer.compare(a[1], b[1])));
+    //System.out.println(Arrays.deepToString(arr));
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    for (int i = 0; i < arr.length; i++) {
+      map.put(arr[i][0], i);
     }
-    PriorityQueue<Cow> pq = new PriorityQueue<Cow>();
-    int maxWait = 0;
-    int time = 0;
+    PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
     int i = 0;
-    int curt = 0;
+    int maxWait = 0;
+    int endTime = 0;
     while (i < n) {
-      if (pq.isEmpty()) {
-        if (arr[i].a >= time) {
-          time = arr[i].a + arr[i].t;
-          curt = time;
-        }
-        else {
-          pq.add(arr[i]);
-        }
+      while (!pq.isEmpty()) {
+        int index = map.get(pq.poll());
+        maxWait = Math.max(maxWait, endTime - arr[index][1]);
+        endTime += arr[index][2];
+      }
+      if (endTime <= arr[i][1]) {
+        endTime = arr[i][1] + arr[i][2];
       }
       else {
-        if (arr[i].a < time) {
-          pq.add(arr[i]);
+        while (i < n && endTime > arr[i][1]) {
+
+          pq.add(arr[i][0]);
+          i++;
         }
-        else if (arr[i].a ==time) {
-            pq.add(arr[i]);
-          while (!pq.isEmpty()) {
-            Cow c = pq.poll();
-            maxWait = Math.max(maxWait, time - c.a);
-            time+=c.t;
-          }
-        }
-        else {
-          while (!pq.isEmpty()) {
-            Cow c = pq.poll();
-            maxWait = Math.max(maxWait, time - c.a);
-            time+=c.t;
-          }
-          if (arr[i].a < time) {
-            pq.add(arr[i]);
-          }
-          else {
-            time = arr[i].a + arr[i].t;
-          }
-        }
+        i--;
       }
       i++;
     }
+    while (!pq.isEmpty()) {
+        int index = map.get(pq.poll());
+        maxWait = Math.max(maxWait, endTime - arr[index][1]);
+        endTime = arr[index][1] + arr[index][2];
+      }
     pw.println(maxWait);
     pw.close();
-  }
-  public static class Cow implements Comparable<Cow> {
-    public int p;
-    public int a;
-    public int t;
-
-    public Cow(int p, int a, int t) {
-      this.p = p;
-      this.a = a;
-      this.t = t;
-    }
-
-    public Cow(Cow cow) {
-      p = cow.p;
-      a = cow.a;
-      t = cow.t;
-    }
-
-    public int compareTo(Cow cow) {
-      return p - cow.p;
-    }
-    public String toString() {
-      return "(" + p + ", " + a + ", " + t + ")";
-    }
   }
 }
