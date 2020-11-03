@@ -1,62 +1,56 @@
-  import java.util.*;
-  import java.io.*;
+import java.util.*;
+import java.io.*;
 
-  public class SnowBoots {
-    public static void main(String[] args) throws IOException {
-      BufferedReader br = new BufferedReader(new FileReader("input.txt"));
-      PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("snowboots.out")));
-      String[] inp1 = br.readLine().split(" ");
-      int n = Integer.parseInt(inp1[0]);
-      int b = Integer.parseInt(inp1[1]);
-      int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(x -> Integer.parseInt(x)).toArray();
-      Stack<Pair> stack = new Stack<Pair>();
-      for (int i = 0; i < b; i++) {
-        String[] inp2 = br.readLine().split(" ");
-        int ai = Integer.parseInt(inp2[0]);
-        int bi = Integer.parseInt(inp2[1]);
-        stack.push(new Pair(ai, bi));
-      }
-      System.out.println(stack);
-      Collections.reverse(stack);
-      //System.out.println(stack.peek());
-      int counter = 1;
-      int index = 0;
-      int prev = 0;
-      Pair current = new Pair(stack.pop());
-      while (index < n) {
-        if (current.a < arr[index+1]) {
-          current = new Pair(stack.pop());
-          counter++;
-          prev = index;
-          while (index - prev < current.b && current.a > arr[index]) {
-            index++;
-          }
-        }
-        else {
-          prev = index;
-          while(index - prev < current.b &&current.a > arr[index]) {
-            index++;
-          }
-        }
-      }
-      System.out.println(counter);
-
+public class SnowBoots {
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new FileReader("snowboots.in"));
+    PrintWriter pw= new PrintWriter(new FileWriter("snowboots.out"));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int n = Integer.parseInt(st.nextToken());
+    int b = Integer.parseInt(st.nextToken());
+    int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(x -> Integer.parseInt(x)).toArray();
+    //System.out.println(Arrays.toString(arr));
+    Queue<Boot> q = new LinkedList<Boot>();
+    for (int i = 0; i < b; i++) {
+      st = new StringTokenizer(br.readLine());
+      int ain = Integer.parseInt(st.nextToken());
+      int bin = Integer.parseInt(st.nextToken());
+      q.add(new Boot(ain, bin));
     }
+    Boot cur = new Boot(q.poll());
+    //System.out.println(q);
+    int i = 0;
+    int j = i;
+    while (i < n) {
+      j = i + cur.s;
+      if (j >= n) break;
+      while (arr[j] > cur.p) {
+        j--;
+      }
 
-    public static class Pair {
-      public int a = 0;
-      public int b = 0;
-
-      public Pair(int a, int b) {
-        this.a = a;
-        this.b = b;
+      if (j<=i) {
+        cur = new Boot(q.poll());
       }
-      public Pair(Pair p) {
-        a = p.a;
-        b = p.b;
+      else {
+        i = j;
       }
-      public String toString() {
-        return "(" + a + ", " + b + ")";
-      }
+    }
+    pw.println(b - q.size()-1);
+    pw.close();
+  }
+  public static class Boot {
+    public int p;
+    public int s;
+    public Boot(int a, int b) {
+      p = a;
+      s = b;
+    }
+    public Boot(Boot b) {
+      p = b.p;
+      s = b.s;
+    }
+    public String toString() {
+      return "(" + p + ", " + s + ")";
     }
   }
+}

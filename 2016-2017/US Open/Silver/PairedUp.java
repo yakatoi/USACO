@@ -6,38 +6,37 @@ public class PairedUp {
     BufferedReader br = new BufferedReader(new FileReader("pairup.in"));
     PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("pairup.out")));
     int n = Integer.parseInt(br.readLine());
-    ArrayList<Integer> al = new ArrayList<Integer>();
-    LinkedHashMap<Integer, Integer> map = new LinkedHashMap<Integer, Integer>();
-    for (int c = 0; c < n; c++) {
-      int[] inp = Arrays.stream(br.readLine().split(" ")).mapToInt(x -> Integer.parseInt(x)).toArray();
-      map.put(inp[1], inp[0]);
+    TreeMap<Integer, Integer> map = new TreeMap<Integer, Integer>();
+    StringTokenizer st;
+    for (int i = 0; i < n; i++) {
+      st = new StringTokenizer(br.readLine());
+      int a = Integer.parseInt(st.nextToken());
+      int b = Integer.parseInt(st.nextToken());
+      map.put(b, a);
     }
-    int maxSum = 0;
-    while (map.size()!=0) {
-      int smallkey = Collections.min(map.keySet());
-      int bigkey = Collections.max(map.keySet());
-      if (map.size()==1) {
-        maxSum = Math.max(maxSum, map.get(smallkey) * 2);
-        map.remove(smallkey);
-        break;
+    int max = 0;
+    //System.out.println(map);
+    while (map.size() > 1) {
+      int first = map.firstKey();
+      int last = map.lastKey();
+      int firstval = map.get(first);
+      int lastval = map.get(last);
+      max = Math.max(max, last + first);
+      if (firstval == lastval) {
+        map.remove(first);
+        map.remove(last);
       }
-      if (map.get(smallkey) > map.get(bigkey)) {
-        maxSum = Math.max(maxSum, bigkey + smallkey);
-        map.replace(smallkey, map.get(smallkey) - map.get(bigkey));
-        map.remove(bigkey);
-      }
-      else if (map.get(smallkey) == map.get(bigkey)) {
-        maxSum = Math.max(maxSum, bigkey + smallkey);
-        map.remove(bigkey);
-        map.remove(smallkey);
+      else if (firstval > lastval) {
+        map.put(first, firstval - lastval);
+        map.remove(last);
       }
       else {
-        maxSum = Math.max(maxSum, bigkey + smallkey);
-        map.replace(bigkey, map.get(bigkey) - map.get(smallkey));
-        map.remove(smallkey);
+        map.put(last, lastval - firstval);
+        map.remove(first);
       }
     }
-    pw.println(maxSum);
+    if (map.size()==1) max = Math.max(max, 2*map.firstKey());
+    pw.println(max);
     pw.close();
   }
 }
