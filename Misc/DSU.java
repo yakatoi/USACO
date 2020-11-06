@@ -2,15 +2,17 @@ import java.util.*;
 import java.io.*;
 
 public class DSU {
-  public static int[] parent;
 
+  public static int[] parent;
+  public static void print() {
+    System.out.println(Arrays.toString(parent));
+  }
   public static void initialize(int n) {
     parent = new int[n];
     for (int i = 0; i < n; i++) {
       parent[i] = i;
     }
   }
-
   public static int find(int x) {
     if (x==parent[x]) {
       return x;

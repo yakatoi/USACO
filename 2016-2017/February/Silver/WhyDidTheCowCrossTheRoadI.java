@@ -3,59 +3,63 @@ import java.io.*;
 
 public class WhyDidTheCowCrossTheRoadI {
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader("helpcross.in"));
-    PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("helpcross.out")));
+    BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+    PrintWriter pw = new PrintWriter(new FileWriter("helpcross.out"));
     StringTokenizer st = new StringTokenizer(br.readLine());
     int c = Integer.parseInt(st.nextToken());
     int n = Integer.parseInt(st.nextToken());
-    int[] chickens = new int[c];
+    Range[] ranges = new Range[n];
+    int[] arr = new int[c];
     for (int i = 0; i < c; i++) {
-      chickens[i] = Integer.parseInt(br.readLine());
+      arr[i] = Integer.parseInt(br.readLine());
     }
-    Range[] cows = new Range[n];
     for (int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());
       int a = Integer.parseInt(st.nextToken());
       int b = Integer.parseInt(st.nextToken());
-      cows[i] = new Range(a, b);
+      ranges[i] = new Range(a, b);
     }
-    Arrays.sort(chickens);
-    Arrays.sort(cows);
-    int counter = 0;
+    Arrays.sort(ranges);
+    Arrays.sort(arr);
+    //System.out.println(Arrays.toString(ranges));
     int i = 0;
     int j = 0;
-    while (i < c && j < n) {
-      if (cows[j].contains(chickens[i])) {
+    int counter = 0;
+    while (i < n && j < c) {
+      if (ranges[j].within(arr[i])==0) {
         counter++;
         i++;
         j++;
       }
-      else if (chickens[i] < cows[j].a) {
-        i++;
-      }
-      else {
+      else if (ranges[i].within(arr[j]) == 1) {
         j++;
       }
+      else {
+        i++;
+      }
     }
-    pw.println(counter);
+    System.out.println(counter);
     pw.close();
-
   }
   public static class Range implements Comparable<Range> {
     public int a;
     public int b;
 
-    public Range(int a, int b) {
-      this.a = a;
-      this.b = b;
+    public Range(int x, int y) {
+      a=x;
+      b=y;
     }
-
+    public int within(int x) {
+      if (x >= a && x <= b) return 0;
+      if (x > b) return 1;
+      return -1;
+    }
+    public String toString() {
+      return "(" + a+ ", " + b+ ")";
+    }
     public int compareTo(Range r) {
-      return b - r.b;
-    }
-
-    public boolean contains(int ch) {
-      return ch >= a && ch <= b;
+      if (b==r.b) return Integer.compare(a, r.a);
+      return Integer.compare(b, r.b);
     }
   }
 }

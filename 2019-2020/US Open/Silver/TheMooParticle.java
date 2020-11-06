@@ -2,63 +2,81 @@ import java.util.*;
 import java.io.*;
 
 public class TheMooParticle {
-  public static ArrayList<Integer> parent = new ArrayList<Integer>();
-  public static ArrayList<Integer> size = new ArrayList<Integer>();
-
+  public static int[] parent;
+  public static void print() {
+    System.out.println(Arrays.toString(parent));
+  }
   public static void initialize(int n) {
+    parent = new int[n];
     for (int i = 0; i < n; i++) {
-      parent.add(i);
-      size.add(1);
+      parent[i] = i;
     }
   }
-
-  public static int root(int i) {
-    while(parent.get(i) != i) {
-      parent.set(i, parent.get(parent.get(i)));
-      i = parent.get(i);
-    }
-    return i;
-  }
-
-  public static void union(int a , int b) {
-    int ra = root(a);
-    int rb = root(b);
-    if (size.get(ra) < size.get(rb)) {
-      parent.set(ra, parent.get(rb));
-      size.set(rb, size.get(rb) + size.get(ra));
+  public static int find(int x) {
+    if (x==parent[x]) {
+      return x;
     }
     else {
-      parent.set(rb, parent.get(ra));
-      size.set(ra, size.get(ra) + size.get(rb));
+      parent[x] = find(parent[x]);
+      return parent[x];
     }
   }
-
+  public static void union(int a, int b) {
+    int c = find(a);
+    int d = find(b);
+    if (c < d) {
+      parent[d] = c;
+    }
+    if (d < c) {
+      parent[c] = d;
+    }
+  }
+  public static int number = 0;
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("moop.in"));
     PrintWriter pw = new PrintWriter(new FileWriter("moop.out"));
     int n = Integer.parseInt(br.readLine());
-    int[][] arr = new int[n][3];
+    initialize(n);
+    Point[] arr = new Point[n];
+    StringTokenizer st;
     for (int i = 0; i < n; i++) {
-      StringTokenizer st = new StringTokenizer(br.readLine());
+      st = new StringTokenizer(br.readLine());
       int x = Integer.parseInt(st.nextToken());
       int y = Integer.parseInt(st.nextToken());
-      arr[i][0] = i;
-      arr[i][1] = x;
-      arr[i][2] = y;
+      arr[i] = new Point(x, y);
     }
-    initialize(n);
+    //System.out.println(Arrays.toString(arr));
     for (int i = 0; i < n; i++) {
-      for (int j = i+1; j < n; j++) {
-        if ((arr[i][1] >= arr[j][1] && arr[i][2] >= arr[j][2]) || (arr[j][1] >= arr[i][1] && arr[j][2] >= arr[i][2])) {
-          union(arr[i][0], arr[j][0]);
+      for (int j = 0; j < n; j++) {
+        if (i!=j) {
+          if (arr[i].interact(arr[j])) {
+            union(arr[i].ident, arr[j].ident);
+          }
         }
       }
     }
-    HashSet<Integer> set = new HashSet<Integer>();
-    for (int child : parent) {
-      set.add(child);
+    HashSet<Integer> ans = new HashSet<Integer>();
+    for (int i = 0; i < n; i++) {
+      ans.add(find(i));
     }
-    pw.println(set.size());
+    pw.println(ans.size());
     pw.close();
+  }
+  public static class Point {
+    public int x;
+    public int y;
+    public int ident;
+    public Point(int a, int b) {
+      x=a;
+      y=b;
+      ident = number;
+      number++;
+    }
+    public boolean interact(Point p) {
+      return p.x >= x && p.y >= y;
+    }
+    public String toString() {
+      return "(" + ident + ": " + x + ", " + y+ ")";
+    }
   }
 }

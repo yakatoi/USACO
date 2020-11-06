@@ -56,11 +56,12 @@ public class FencePlanning {
     //print();
     HashMap<Integer, Rect> rects = new HashMap<Integer, Rect>();
     for (int i = 0; i < n; i++) {
-      if (rects.keySet().contains(parent[i])) {
-        rects.get(parent[i]).add(map.get(i));
+      int res = find(i);
+      if (rects.keySet().contains(res)) {
+        rects.get(res).add(map.get(i));
       }
       else {
-        rects.put(parent[i], new Rect(map.get(i)));
+        rects.put(res, new Rect(map.get(i)));
       }
     }
     int minPer = Integer.MAX_VALUE;
