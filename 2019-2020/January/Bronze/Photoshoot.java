@@ -9,7 +9,7 @@ public class Photoshoot {
     StringTokenizer st = new StringTokenizer(br.readLine());
     int[] inp = new int[n-1];
     for (int i = 0; i < n-1; i++) {
-      inp[i] = Integer.parseInt(st.nextToken());
+      inp[i] = Integer.parseInt(st.nextToken());101099
     }
     int[] ans = new int[n];
     boolean check = false;

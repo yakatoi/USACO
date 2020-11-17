@@ -31,11 +31,12 @@ public class SplittingTheField {
     // System.out.println(minx + " " + maxx);
     // System.out.println(miny + " " + maxy);
     // System.out.println();
-    //print(arr);
+    // print(arr);
     int oneRectArea = (maxx - minx) * (maxy - miny);
     Arrays.sort(arr, (x, y) -> (Integer.compare(x[0], y[0])));
     print(arr);
-    Pair p1 = new Pair(arr[n-2][0]-arr[0][0],0);
+    Pair p1 = new Pair(arr[n-2][0] - arr[0][0], 0);
+
     for (int i = 0; i < n-1; i++) {
       p1.minimize(arr[i][0] - arr[0][0], arr[n-1][0] - arr[i+1][0]);
     }

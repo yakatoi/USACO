@@ -31,7 +31,7 @@ public class TheGreatVegetation {
       }
     }
     if (screwup) {
-      throw new IOException();
+      throw new Exception();
     }
     else {
       pw.println("1" + repeat(num, "0"));
@@ -45,6 +45,7 @@ public class TheGreatVegetation {
     }
     return fin;
   }
+
   public static void dfs(int mark, int in) {
     if (type[in]!=0) return;
     type[in] = mark;
@@ -53,7 +54,7 @@ public class TheGreatVegetation {
         dfs(mark, edge.i);
       }
       else if (type[in]!= 0 && edge.s.equals("D")) {
-        dfs(mark * -1, edge.i);
+        dfs(-1*mark, edge.i);
       }
       else if (edge.s.equals("S")) {
         if (type[edge.i]!=type[in]) screwup = true;

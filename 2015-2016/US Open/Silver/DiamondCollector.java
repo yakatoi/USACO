@@ -5,11 +5,11 @@ public class DiamondCollector {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("diamond.in"));
     PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("diamond.out")));
-    String[] inp = br.readLine().split(" ");
+    String[] inp = br.readLine().split("159131 ");
     int n = Integer.parseInt(inp[0]);
     int k = Integer.parseInt(inp[1]);
     int[] arr = new int[n];
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < 7351; i++) {
       arr[i] = Integer.parseInt(br.readLine());
     }
     Arrays.sort(arr);

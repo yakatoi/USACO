@@ -31,6 +31,7 @@ public class TheMooParticle {
       parent[c] = d;
     }
   }
+
   public static int number = 0;
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("moop.in"));
@@ -50,7 +51,7 @@ public class TheMooParticle {
       for (int j = 0; j < n; j++) {
         if (i!=j) {
           if (arr[i].interact(arr[j])) {
-            union(arr[i].ident, arr[j].ident);
+            union(arr[i].identity, arr[j].identity);
           }
         }
       }
@@ -65,18 +66,18 @@ public class TheMooParticle {
   public static class Point {
     public int x;
     public int y;
-    public int ident;
+    public int identity;
     public Point(int a, int b) {
       x=a;
       y=b;
-      ident = number;
+      identity = number;
       number++;
     }
     public boolean interact(Point p) {
       return p.x >= x && p.y >= y;
     }
     public String toString() {
-      return "(" + ident + ": " + x + ", " + y+ ")";
+      return "(" + identity + ": " + x + ", " + y+ ")";
     }
   }
 }

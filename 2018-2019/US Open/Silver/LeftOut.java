@@ -2,109 +2,60 @@ import java.util.*;
 import java.io.*;
 
 public class LeftOut {
-
-  public static int[][] arr;
   public static int n;
-
+  public static int arr[][];
+  public static Pair ans = new Pair(-1, -1);
+  public static void print() {
+    for (int[] row : arr) {
+      for (int ele: row) {
+        System.out.print(ele);
+      }
+      System.out.println();
+    }
+    System.out.println();
+  }
+  public static void row(int row) {
+    for (int i = 0; i < n; i++) {
+      arr[row][i] = 1-arr[row][i];
+    }
+  }
+  public static void col(int col) {
+    for (int i = 0; i < n; i++) {
+      arr[i][col] = 1-arr[i][col];
+    }
+  }
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader("leftout.in"));
-    PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("leftout.out")));
+    BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+    PrintWriter pw = new PrintWriter(new FileWriter("leftout.out"));
     n = Integer.parseInt(br.readLine());
     arr = new int[n][n];
     for (int i = 0; i < n; i++) {
-      String[] inp = br.readLine().split("");
+      int[] inp = Arrays.stream(br.readLine().replace("R", "0").replace("L", "1").split("")).mapToInt(x -> Integer.parseInt(x)).toArray();
       for (int j = 0; j < n; j++) {
-        arr[i][j] = inp[j].equals("R") ? 1 : 0;
-      }
-    }
-    //pw.println(Arrays.deepToString(arr));
-
-    if (arr[0][0]==1) {
-      flipR(0);
-    }
-    for (int i = 1; i < n; i++) {
-      if (arr[0][i]==1) {
-        flipC(i);
-      }
-    }
-    for (int i = 1; i < n; i++) {
-      if (arr[i][0]==1) {
-        flipR(i);
+        arr[i][j] = inp[j];
       }
     }
 
-    //pw.println(Arrays.deepToString(arr));
-    boolean hasPrinted = false;
-    if (isEverythingFalse()) {
-      pw.println("1 1");
-      hasPrinted = true;
-    }
-    else {
-      for (int i = 1; i < n; i++) {
-        if (!checkColArray(i)) {
-          pw.println("1 " + i);
-          hasPrinted = true;
-        }
-      }
-      if (!hasPrinted) {
-        for (int i = 1; i < n; i++) {
-          if (!checkRowArray(i)) {
-            pw.println(i + " 1");
-            hasPrinted = true;
-          }
-        }
-      }
-      if (!hasPrinted) {
-        for (int i = 1; i < n; i++) {
-          for (int j = 1; j < n; j++) {
-            if (arr[i][j]==1) {
-              pw.println((i+1)+ " " + (j+1));
-              hasPrinted = true;
-            }
-          }
-        }
-      }
-    }
-    if (!hasPrinted) {
-      pw.println(-1);
-    }
-    pw.close();
-  }
-  public static void flipR(int ind) {
+    print();
+    if (arr[0][0]==1) row(0);
     for (int i = 0; i < n; i++) {
-      arr[ind][i] = arr[ind][i]==1 ? 0 : 1;
-    }
-  }
-  public static void flipC(int ind) {
-    for (int i = 0; i < n; i++) {
-      arr[i][ind] = arr[i][ind]==1 ? 0 : 1;
-    }
-  }
-  public static boolean isEverythingFalse() {
-    for (int i = 1; i < n; i++) {
-      for (int j = 1; j < n; j++) {
-        if (arr[i][j]==0) {
-          return false;
-        }
+      if (arr[0][i] == 1) {
+        col(i);
       }
     }
-    return true;
-  }
-  public static boolean checkColArray(int ind) {
     for (int i = 1; i < n; i++) {
-      if (arr[i][ind]==0) {
-        return true;
+      if (arr[i][0] ==1 ) {
+        row(i);
       }
     }
-    return false;
-  }
-  public static boolean checkRowArray(int ind) {
-    for (int i = 1; i < n; i++) {
-      if (arr[ind][i]==0) {
-        return true;
-      }
-    }
-    return false;
-  }
+    print();  
 
+  }
+  public static class Pair {
+    public static int x, y;
+    public Pair(int a, int b) {
+      x=a;
+      y=b;
+    }
+  }
 }

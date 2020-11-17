@@ -2,54 +2,43 @@ import java.util.*;
 import java.io.*;
 
 public class AngryCows {
-
-  public static TreeSet<Integer> loc = new TreeSet<Integer>();
-
+  public static int n, k;
+  public static long[] bales;
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader("angry.in"));
-    PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("angry.out")));
+    BufferedReader br= new BufferedReader(new FileReader("angry.in"));
+    PrintWriter pw = new PrintWriter(new FileWriter("angry.out"));
     StringTokenizer st = new StringTokenizer(br.readLine());
-    int n = Integer.parseInt(st.nextToken());
-    int k = Integer.parseInt(st.nextToken());
+    n = Integer.parseInt(st.nextToken());
+    k = Integer.parseInt(st.nextToken());
+    bales = new long[n];
     for (int i = 0; i < n; i++) {
-      loc.add(Integer.parseInt(br.readLine()));
+      bales[i] = Integer.parseInt(br.readLine());
     }
-
-    int lo = 0;
-    int hi = loc.last() - loc.first();
-
-    int ans = 0;
-
-    while(lo <= hi) {
-      int mid = (lo + hi)/2;
-      if (!doSimulation(mid, n, k)) {
-        ans = mid;
-        lo = mid+1;
+    Arrays.sort(bales);
+    long lo = 1;
+    long hi = bales[n-1] - bales[0];
+    while (lo!=hi) {
+      long mid = (lo+hi)/2;
+      if (works(mid)) {
+        hi = mid;
       }
       else {
-        hi = mid-1;
+        lo = mid+1;
       }
     }
-    pw.println(ans+1);
+    pw.println(lo);
     pw.close();
   }
-  public static boolean doSimulation(int r, int n, int k) {
-    TreeSet<Integer> al = new TreeSet<Integer>(loc);
-    for (int i = 0; i < k; i++) {
-      int min = al.first();
-      al = removeAllBelowACertainIndice(al, min + 2*r);
-      if (al.isEmpty()) {
-        return true;
+  public static boolean works(long x) {
+    int counter = 1;
+    long b = bales[0] + 2*x;
+    for (int i = 0; i < n; i++) {
+      if (bales[i] > b) {
+        counter++;
+        b = bales[i] + 2*x;
       }
+      if (counter > k) break;
     }
-    return false;
-
-  }
-
-  public static TreeSet<Integer> removeAllBelowACertainIndice(TreeSet<Integer> al, int below) {
-    while (!al.isEmpty() && al.first() <= below) {
-      al.remove(al.first());
-    }
-    return al;
+    return counter <= k;
   }
 }
