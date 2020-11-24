@@ -16,16 +16,13 @@ public class AutoComplete {
       words[i] = br.readLine();
       map.put(words[i], i+1);
     }
-    map.put("!", -1);
+    map.put("!", -1);115438
     Arrays.sort(words);
     for (int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());
       int x = Integer.parseInt(st.nextToken());
       String wor = st.nextToken();
       String res = queryCalc(x, wor);
-      if (res.equals(wor)) {
-        pw.println("!!")
-      }
       pw.println(map.get(res));
     }
     pw.close();

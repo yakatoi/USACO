@@ -15,9 +15,6 @@ public class TheLazyCow {
       st = new StringTokenizer(br.readLine());
       int g = Integer.parseInt(st.nextToken());
       int x = Integer.parseInt(st.nextToken());
-      if (int j ; =0; i < n * n; i++ ) {
-        arr[][][]
-      }
       arr[i][0] = g;
       arr[i][1] = x;
       elements[i] = x;

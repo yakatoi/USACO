@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 public class SecretCowCode {
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("cowcode.in"));
 		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("cowcode.out")));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		String s = st.nextToken();
@@ -12,9 +12,7 @@ public class SecretCowCode {
 	}
 
 	public static char rec(String s, long index) {
-		if(index < s.length()) {
-			return s.charAt((int)index);
-		}
+		if(index < s.length()) return s.charAt((int)index);
 		long len = s.length();
 		while(2*len <= index) {
 			len *= 2;

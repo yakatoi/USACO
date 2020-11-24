@@ -6,19 +6,16 @@ public class TrappedInTheHaybales {
   public static int n;
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("trapped.in"));
-    PrintWriter    pw = new PrintWriter(new FileWriter("trapped.out"));
+    PrintWriter  pw = new PrintWriter(new FileWriter("trapped.out"));
     n = Integer.parseInt(br.readLine());
     StringTokenizer st;
     for (int i = 0; i < n; i++) {
-      st = new   StringTokenizer(br.readLine());
+      st = new StringTokenizer(br.readLine());
       int size = Integer.parseInt(st.nextToken());
       int pos =  Integer.parseInt(st.nextToken());
       al.add(new Haybale());
       al.get(i).size = size;
       al.get(i).pos = pos;
-    }
-    for (int eleement : al ) {
-
     }
     Collections.sort(al);
     //System.out.println(al);
