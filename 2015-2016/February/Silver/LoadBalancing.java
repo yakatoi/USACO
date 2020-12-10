@@ -1,64 +1,76 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
+
 public class LoadBalancing {
-	static State[] list;
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("balancing.in"));
-		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("balancing.out")));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		int n = Integer.parseInt(st.nextToken());
-		list = new State[n];
-		for(int i = 0; i < n; i++) {
-			st = new StringTokenizer(br.readLine());
-			list[i] = new State(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())/2);
+		BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+		PrintWriter pw = new PrintWriter(new FileWriter("balancing.out"));
+		int n = Integer.parseInt(br.readLine());
+		HashSet<Integer> one = new HashSet<Integer>();
+		HashSet<Integer> two = new HashSet<Integer>();
+		Point[] arr = new Point[n];
+		for (int i = 0; i < n; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			arr[i] = new Point(a, b);
 		}
-		Arrays.sort(list);
-		int ret = list.length;
-		for(int i = 0; i < n; i++) {
-			ArrayList<State> below = new ArrayList<State>();
-			ArrayList<State> above = new ArrayList<State>();
-			for(int j = 0; j < n; j++) {
-				if(list[j].y <= list[i].y) {
-					below.add(list[j]);
-				}
-				else {
-					above.add(list[j]);
-				}
+		Arrays.sort(arr, (a, b) -> (Integer.compare(a.x, b.x)));
+		if (n%2==0) {
+			if (arr[n/2-1].x==arr[n/2].x) {
+				one.add(arr[n/2-1].x+1);
+				one.add(arr[n/2-1].x-1);
 			}
-			int belowIndex = 0;
-			int aboveIndex = 0;
-			while(belowIndex < below.size() || aboveIndex < above.size()) {
-				int xBorder = Integer.MAX_VALUE;
-				if(belowIndex < below.size()) {
-					xBorder = Math.min(xBorder, below.get(belowIndex).x);
-				}
-				if(aboveIndex < above.size()) {
-					xBorder = Math.min(xBorder, above.get(aboveIndex).x);
-				}
-				while(belowIndex < below.size() && below.get(belowIndex).x == xBorder) {
-					belowIndex++;
-				}
-				while(aboveIndex < above.size() && above.get(aboveIndex).x == xBorder) {
-					aboveIndex++;
-				}
-				ret = Math.min(ret, Math.max(Math.max(belowIndex, below.size() - belowIndex), Math.max(aboveIndex, above.size() - aboveIndex)));
+			else {
+				one.add(arr[n/2-1].x+1);
 			}
 		}
-		pw.println(ret);
+		else {
+			one.add(arr[n/2].x+1);
+			one.add(arr[n/2].x-1);
+		}
+		Arrays.sort(arr, (a, b) -> (Integer.compare(a.y, b.y)));
+		if (n%2==0) {
+			if (arr[n/2-1].y==arr[n/2].y) {
+				two.add(arr[n/2-1].y+1);
+				two.add(arr[n/2-1].y-1);
+			}
+			else {
+				two.add(arr[n/2-1].y+1);
+			}
+		}
+		else {
+			two.add(arr[n/2].y+1);
+			two.add(arr[n/2].y-1);
+		}
+		//System.out.println(one);
+		//System.out.println(two);
+		int minM = Integer.MAX_VALUE;
+		
+		for (int x : one) {
+			for (int y : two) {
+				int q1 = 0;int q2 = 0;int q3 = 0;int q4 = 0;
+				for (Point p : arr) {
+					if (p.x > x && p.y > y) q1++;
+					else if (p.x < x && p.y > y) q2++;
+					else if (p.x < x && p.y < y) q3++;
+					else q4++;
+				}
+				int max = Math.max(Math.max(q1, q2), Math.max(q3, q4));
+				minM = Math.min(minM, max);
+			}
+		}
+		System.out.println(minM);
 		pw.close();
 	}
-
-	static class State implements Comparable<State> {
-		public int x,y;
-
-		public State(int x, int y) {
-			super();
-			this.x = x;
-			this.y = y;
+	public static class Point {
+		int x, y;
+		public Point(int a, int b) {
+			x=a;
+			y=b;
 		}
-		public int compareTo(State s) {
-			return x - s.x;
+		public String toString() {
+			return x + " " + y;
 		}
 	}
-
 }

@@ -1,101 +1,87 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
+
 public class WhyDidTheCowCrossTheRoadIII {
-
-	static Set<State>[][] badFields;
 	static int n, k, r;
-
+	static int counter;
+	static int[] count;
+	static int[][] arr;
+	static boolean[][] visited;
+	static HashSet<Integer> set = new HashSet<Integer>();
+	static HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("countcross.in"));
-		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("countcross.out")));
+		BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+		PrintWriter pw = new PrintWriter(new FileWriter("countcross.out"));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		n = Integer.parseInt(st.nextToken());
 		k = Integer.parseInt(st.nextToken());
 		r = Integer.parseInt(st.nextToken());
-		badFields = new Set[n][n];
-		for(int i = 0; i < n; i++) {
-			for(int j = 0; j < n; j++) {
-				badFields[i][j] = new HashSet<State>();
-			}
-		}
-		for(int i = 0; i < r; i++) {
+		count = new int[k];
+		visited = new boolean[n][n];
+		for (int i = 0; i < r; i++) {
 			st = new StringTokenizer(br.readLine());
-			int x1 = Integer.parseInt(st.nextToken()) - 1;
-			int y1 = Integer.parseInt(st.nextToken()) - 1;
-			int x2 = Integer.parseInt(st.nextToken()) - 1;
-			int y2 = Integer.parseInt(st.nextToken()) - 1;
-			badFields[x1][y1].add(new State(x2, y2));
-			badFields[x2][y2].add(new State(x1, y1));
+			int a = Integer.parseInt(st.nextToken())-1;
+			int b = Integer.parseInt(st.nextToken())-1;
+			int c = Integer.parseInt(st.nextToken())-1;
+			int d = Integer.parseInt(st.nextToken())-1;
+			double x = (a+c)/2.0;
+			double y = (b+d)/2.0;
+			int x  = y
+			set.add((int) (1000*x+y));
 		}
-		State[] points = new State[k];
-		int ret = 0;
-		for(int i = 0; i < k; i++) {
+		arr =new int[n][n];
+
+		for (int i = 0; i < k; i++) {
 			st = new StringTokenizer(br.readLine());
-			int x = Integer.parseInt(st.nextToken()) - 1;
-			int y = Integer.parseInt(st.nextToken()) - 1;
-			points[i] = new State(x, y);
-			boolean[][] reachable = new boolean[n][n];
-			dfs(reachable, x, y);
-			for(int j = 0; j < i; j++) {
-				if(!reachable[points[j].x][points[j].y]) {
-					ret++;
+			int a = Integer.parseInt(st.nextToken())-1;
+			int b = Integer.parseInt(st.nextToken())-1;
+			map.put(1000*a+b, i);
+			arr[a][b] = -1;
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (arr[i][j]==-1) {
+					floodfill(i, j);
+					counter++;
 				}
 			}
 		}
-		pw.println(ret);
-		pw.close();
-	}
-
-	static int[] dx = new int[]{-1,0,1,0};
-	static int[] dy = new int[]{0,1,0,-1};
-
-	public static void dfs(boolean[][] reachable, int x, int y) {
-		if(x < 0 || x >= reachable.length || y < 0 || y >= reachable[x].length || reachable[x][y]) {
-			return;
-		}
-		reachable[x][y] = true;
-		for(int k = 0; k < dx.length; k++) {
-			int nx = x + dx[k];
-			int ny = y + dy[k];
-			if(!badFields[x][y].contains(new State(nx, ny))) {
-				dfs(reachable, nx, ny);
+		int ans = 0;
+		for (int i = 0; i < k; i++) {
+			for (int j = i+1; j < k; j++) {
+				if (count[i]!=count[j]) ans++;
 			}
 		}
+		System.out.println(ans);
+		//pw.close();
 	}
-
-	static class State {
-		int x, y;
-
-		public State(int x, int y) {
-			super();
-			this.x = x;
-			this.y = y;
+	public static void floodfill(int x, int y) {
+		if (x < 0 || x >= n || y < 0 || y >= n || visited[x][y]) return;
+		visited[x][y] = true;
+		if (arr[x][y]==-1) {
+			int val = map.get(1000*x+y);
+			count[val] = counter;
+		}
+		if (isInter(x, y, x+1, y)) {
+			floodfill(x+1, y);
+		}
+		if (isInter(x, y, x-1, y)) {
+			floodfill(x-1, y);
+		}
+		if (isInter(x, y, x, y-1)) {
+			floodfill(x, y-1);
+		}
+		if (isInter(x, y, x, y+1)) {
+			floodfill(x, y+1);
 		}
 
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + x;
-			result = prime * result + y;
-			return result;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			State other = (State) obj;
-			if (x != other.x)
-				return false;
-			if (y != other.y)
-				return false;
-			return true;
-		}
-
+	}
+	public static boolean isInter(int x1, int x2, int y1, int y2) {
+		if (x1 < 0 || x1 >= n || y1 < 0 || y1 >= n) return false;
+		if (x2 < 0 || x2 >= n || y2 < 0 || y2 >= n) return false;
+		double x = (x1+x2)/2.0;
+		double y = (y1+y2)/2.0;
+		int check = (int) (1000*x+y);
+		return !set.contains(check);
 	}
 }

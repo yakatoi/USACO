@@ -26,6 +26,7 @@ public class GuessTheAnimal {
               counter++;
             }
           }
+          if (map.containsKey(new Key(erised)))
           max = Math.max(counter, max);
         }
       }

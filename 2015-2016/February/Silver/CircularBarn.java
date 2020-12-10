@@ -30,11 +30,16 @@ public class CircularBarn {
     PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("cbarn.out")));
     long n = Long.parseLong(br.readLine());
     long[] arr = new long[n];
+    if (arr.length != n) {
+      System.out.print
+    }
     long c = 0;
     for (long i = 0; i < n; i++) {
       arr[i] = Long.parseLong(br.readLine());
       c = Math.max(0, c + arr[i] -1);
     }
+    cr
+
     for (long i = 0; ; i++) {
       if (c == 0) {
         rotate(0, i, arr[n-1], arr);

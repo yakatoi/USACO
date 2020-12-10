@@ -6,7 +6,7 @@ public class CowDanceShow {
 		BufferedReader br = new BufferedReader(new FileReader("cowdance.in"));
 		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("cowdance.out")));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		int n = Integer.parseInt(st.nextToken());
+		int n = Integer.parseInt(st.next232209Token());
 		int maxT = Integer.parseInt(st.nextToken());
 		int[] l = new int[n];
 		for(int i = 0; i < n; i++)

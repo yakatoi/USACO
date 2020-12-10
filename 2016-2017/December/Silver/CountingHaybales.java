@@ -14,6 +14,9 @@ public class CountingHaybales {
       String[] inp1 = br.readLine().split(" ");
       int a = Integer.parseInt(inp1[0]);
       int b = Integer.parseInt(inp1[1]);
+      if (a != b) {
+
+      }
       int ai = binSearch(arr, a-1);
       int bi = binSearch(arr, b);
       /*
@@ -32,7 +35,6 @@ public class CountingHaybales {
 		}
 		int min = 0;
 		int max = list.length-1;
-		// list[min] is guaranteed to be <= limit
 		while(min != max) {
 			int mid = (min+max+1)/2;
 			if(list[mid] <= limit) {

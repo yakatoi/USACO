@@ -36,18 +36,18 @@ public class MilkMeasurement {
               highGal = secHigh;
             }
             else {
-                highGal = map.get(arr[i][1]);
+              highGal = map.get(arr[i][1]);
+              highG
             }
           }
           else if (map.get(arr[i][1]) < highGal) {
             counter++;
             winners.remove(arr[i][1]);
             if (winners.size()==1) {
-                secHigh = g;
+              secHigh = g;
             }
           }
-
-                  }
+        }
         else {
           if (map.get(arr[i][1])  >= highGal) {
             counter++;

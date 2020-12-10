@@ -1,54 +1,54 @@
 import java.io.*;
 import java.util.*;
-public class Lifeguards {
+public class lifeguards {
 	public static void main(String[] args) throws IOException {
-		BufferedReader br    = new BufferedReader(new FileReader("lifeguards.in"));
-		PrintWriter pw       = new PrintWriter(new BufferedWriter(new FileWriter("lifeguards.out")));
-		TreeSet<Integer> set = new TreeSet<Integer>();
-		int n                = Integer.parseInt(br.readLine());
-		Pair[] l             = new Pair[2*n];
+		BufferedReader br = new BufferedReader(new FileReader("lifeguards.in"));
+		PrintWriter pw = new PrintWriter(new FileWriter("lifeguards.out"));
+		int n = Integer.parseInt(br.readLine());
+		ArrayList<Event> al = new ArrayList<Event>();
 		for(int i = 0; i < n; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			int start = Integer.parseInt(st.nextToken());
-			int end   = Integer.parseInt(st.nextToken());
-			l[2*i]    = new Pair(start, i);
-			l[2*i+1]  = new Pair(end, i);
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			al.add(new Event(a, i));
+			al.add(new Event(b, i));
 		}
-		Arrays.sort(l);
-		int actualCover = 0;
-		int[] alone     = new int[n];
-		int last        = 0;
-		for(Pair out:l) {
-			if(set.size()==1) {
-				alone[set.first()]+=out.time-last;
-			}
+		Collections.sort(al);
+		TreeSet<Integer> set = new TreeSet<Integer>();
+		int c = 0;
+		int[] arr = new int[n];
+		int last = 0;
+		for(Event e: l) {
 			if(!set.isEmpty()) {
-				actualCover+=out.time-last;
+				c += e.x - last;
+				if(set.size() == 1) {
+					arr[set.first()] += e.x - last;
+				}
 			}
-			if(set.contains(out.index)) {
-				set.remove(out.index);
+			if(set.contains(e.count)) {
+				set.remove(e.count);
 			}
 			else {
-				set.add(out.index);
+				set.add(e.count);
 			}
-			last = out.time;
+			last = e.x;
 		}
-		int ret = 0;
-		for(int out: alone) {
-			ret = Math.max(ret, actualCover - out);
+		int ans = 0;
+		for(int ele: arr) {
+			ans = Math.max(ans, c - ele);
 		}
-		pw.println(ret);
+		pw.println(ans);
 		pw.close();
 	}
 
-	static class Pair implements Comparable<Pair> {
-		public int time, index;
-		public Pair(int a, int b) {
-			time  = a;
-			index = b;
+	static class Event implements Comparable<Event> {
+		public int x, count;
+		public Event(int a, int b) {
+			x=a;
+			count=b;
 		}
-		public int compareTo(Pair s) {
-			return time - s.time;
+		public int compareTo(Event s) {
+			return Integer.compare(x, s.x);
 		}
 	}
 

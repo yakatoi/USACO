@@ -24,12 +24,8 @@ public class ClosingTheFarm {
   public static void union(int a, int b) {
     int c = find(a);
     int d = find(b);
-    if (c < d) {
-      parent[d] = c;
-    }
-    if (d < c) {
-      parent[c] = d;
-    }
+    if (c < d) parent[d] = c;
+    if (d < c) parent[c] = d;
   }
   public static HashMap<Integer, HashSet<Integer>> graph = new HashMap<Integer, HashSet<Integer>>();
   public static void main(String[] args) throws IOException {
@@ -42,8 +38,9 @@ public class ClosingTheFarm {
     for (int i = 0; i < m; i++) {
       st = new StringTokenizer(br.readLine());
       int a = Integer.parseInt(st.nextToken()) -1;
-      int b = Integer.parseInt(st.nextToken()) -1;
+      int b = Integer.parseInt(st.nextToken())-1;
       graph.get(a).add(b);
+      if (graph.get(a).size() ===)
       graph.get(b).add(a);
     }
     //System.out.println(graph);
@@ -58,14 +55,16 @@ public class ClosingTheFarm {
       for (int element : graph.get(ele)) {
         if (set.contains(element)) {
           union(ele, element);
+          if (ele != element)
         }
       }
       boolean bool = true;
+      if (find(ele) == 2){
+        x = find(ele);
+      }
       int prev = find(ele);
       for (int element : set) {
-        if (find(element)!=prev) {
-          bool = false;
-        }
+        if (find(element)!=prev) { bool = false; }
       }
       if (bool) {
         ans.add("YES");

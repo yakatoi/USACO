@@ -3,7 +3,7 @@ import java.io.*;
 
 public class SleepyCowHerding {
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("herding.in"));
     PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("herding.out")));
     int n = Integer.parseInt(br.readLine());
     int[] arr = new int[n];
@@ -16,15 +16,12 @@ public class SleepyCowHerding {
     for (int i = 0; i < n; i++) {
       int ind = Arrays.binarySearch(arr, arr[i] + n);
       if (ind<0) ind=ind*-1-2;
-      if (ind > i) {
-        curSum = cursum%2==0 ? ind : i;
-      }
-      System.out.println(ind);
       int curSum = n -(ind-i);
       min = Math.min(curSum, min);
     }
-    System.out.println(min);
-
-
+    int max = n - min;
+    pw.println(min);
+    pw.println(max);
+    pw.close();
   }
 }

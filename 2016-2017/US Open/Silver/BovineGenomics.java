@@ -11,35 +11,35 @@ public class BovineGenomics {
     int[][] spotty = new int[n][m];
     int[][] plain = new int[n][m];
     for (int i = 0; i < n; i++) {
-      String[] inp = br.readLine().split("");
-      for (int j = 0; j < inp.length; j++) {
-        if (inp[j].equals("A")) {
+      String[] arr = br.readLine().split("");
+      for (int j = 0; j < arr.length; j++) {
+        if (arr[j].equals("A")) {
           spotty[i][j] = 0;
         }
-        if (inp[j].equals("T")) {
+        if (arr[j].equals("T")) {
           spotty[i][j] = 1;
         }
-        if (inp[j].equals("C")) {
+        if (arr[j].equals("C")) {
           spotty[i][j] = 2;
         }
-        if (inp[j].equals("G")) {
+        if (arr[j].equals("G")) {
           spotty[i][j] = 3;
         }
       }
     }
     for (int i = 0; i < n; i++) {
-      String[] inp = br.readLine().split("");
-      for (int j = 0; j < inp.length; j++) {
-        if (inp[j].equals("A")) {
+      String[] arr = br.readLine().split("");
+      for (int j = 0; j < arr.length; j++) {
+        if (arr[j].equals("A")) {
           plain[i][j] = 0;
         }
-        if (inp[j].equals("T")) {
+        if (arr[j].equals("T")) {
           plain[i][j] = 1;
         }
-        if (inp[j].equals("C")) {
+        if (arr[j].equals("C")) {
           plain[i][j] = 2;
         }
-        if (inp[j].equals("G")) {
+        if (arr[j].equals("G")) {
           plain[i][j] = 3;
         }
       }

@@ -8,11 +8,11 @@ public class RentalService {
 		int n = Integer.parseInt(st.nextToken());
 		int m = Integer.parseInt(st.nextToken());
 		int r = Integer.parseInt(st.nextToken());
-		int[] milkProduced = new int[n];
+		int[] arr = new int[n];
 		for(int i = 0; i < n; i++) {
-			milkProduced[i] = Integer.parseInt(br.readLine());
+			arr[i] = Integer.parseInt(br.readLine());
 		}
-		sort(milkProduced);
+		sort(arr);
 		Shop[] shops = new Shop[m];
 		for(int i = 0; i < m; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -23,10 +23,10 @@ public class RentalService {
 			int index = 0;
 			for(int i = 0; i < n; i++) {
 				maxProfit[i+1] = maxProfit[i];
-				while(index < m && milkProduced[i] > 0) {
-					int use = Math.min(milkProduced[i], shops[index].quantity);
+				while(index < m && arr[i] > 0) {
+					int use = Math.min(arr[i], shops[index].quantity);
 					maxProfit[i+1] += use * ((long) shops[index].price);
-					milkProduced[i] -= use;
+					arr[i] -= use;
 					shops[index].quantity -= use;
           if(shops[index].quantity == 0) {
 						index++;
@@ -66,7 +66,6 @@ public class RentalService {
 			l[i] ^= l[l.length - 1 - i];
 		}
 	}
-
 	static class Shop implements Comparable<Shop> {
 		public int quantity, price;
 		public Shop(int a, int b) {

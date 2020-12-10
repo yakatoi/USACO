@@ -2,13 +2,15 @@ import java.util.*;
 import java.io.*;
 
 public class MultiplayerMoo {
-  public static int n;
-  public static int[][] arr;
-  public static boolean[][] visited;
-  public static HashMap<Integer, Color> map = new HashMap<Integer, Color>();
-  public static int count;
+  static int n;
+  static int[][] arr;
+  static boolean[][] visited;
+  static HashMap<Node, HashSet<Node>> graph = new HashMap<Node, HashSet<Node>>();
+  static HashSet<Node> nei = new HashSet<Node>();
+  static int size;
+  static void print() {for (int[] row: arr) {for (int ele: row) {System.out.print(ele + " ");}System.out.println();}}
   public static void main(String[] args) throws IOException {
-    BufferedReader br= new BufferedReader(new FileReader("input.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("input.txt"));
     PrintWriter pw = new PrintWriter(new FileWriter("multimoo.out"));
     n = Integer.parseInt(br.readLine());
     arr = new int[n][n];
@@ -17,64 +19,67 @@ public class MultiplayerMoo {
       String[] inp = br.readLine().split(" ");
       for (int j = 0; j < n; j++) {
         arr[i][j] = Integer.parseInt(inp[j]);
-        add(arr[i][j]);
       }
     }
-    ArrayList<Color> al = new ArrayList<Color>(new TreeSet<Color>(map.values()));
-    System.out.println(al);
-    int max = 0;
+    print();
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
         if (!visited[i][j]) {
-          count = 0;
           floodfill(i, j, arr[i][j]);
-          max = Math.max(max, count);
+          Node node = new Node(arr[i][j], i*251+j, count);
+          size = 0;
+          map.put(node, new HashSet<Node>());
+          for (Node n : nei) {
+            map.get(node).add(n.id);
+          }
         }
       }
-    }
-    System.out.println(max);
-  }
-  public static void add(int key) {
-    if (map.keySet().contains(key)) {
-      map.get(key).size++;
-    }
-    else {
-      map.put(key, new Color(key, 1));
+      pw.println(Collections.max(graph.keySet()));
+      pw.close();
     }
   }
-  public static void floodfill(int x, int y, int col) {
-    if (x < 0 || x >= n || y < 0 || y >= n || visited[x][y] || arr[x][y]!=col) return;
-    count++;
-    visited[x][y] =true;
-    floodfill(x+1, y, col);
-    floodfill(x-1, y, col);
-    floodfill(x, y+1, col);
-    floodfill(x, y-1, col);
-  }
-  public static void floodfill(int x, int y, int col1, int col2) {
-    if (x < 0 || x >= n || y < 0 || y >= n || visited[x][y] || (arr[x][y]!=col1 && arr[x][y]!=col2)) return;
-    count++;
-    visited[x][y] =true;
-    floodfill(x+1, y, col1, col2);
-    floodfill(x-1, y, col1, col2);
-    floodfill(x, y+1, col1, col2);
-    floodfill(x, y-1, col1, col2);
-  }
-  public static class Color implements Comparable<Color> {
-    public int color;
-    public int size;
-    public Color(int a, int b) {
-      color = a;
-      size = b;
+  static void floodfill(int x, int y, int start) {
+    if (isOut(x, y) || visited[x][y] || arr[x][y] != start) return;
+    visited[x][y] = true;
+    size++;
+    if (!isOut(x+1, y)) {
+      nei.add(new Node(arr[x+1][y], i*251+j));
+      floodfill(x+1, y);
     }
-    public String toString() {
-      return "(" + color + ": " + size + ")";
+    if (!isOut(x-1, y)) {
+      nei.add(new Node(arr[x-1][y], i*251+j));
+      floodfill(x-1, y);
     }
-    public int compareTo(Color c) {
-      if (size==c.size) {
-        return -1*Integer.compare(color, c.color);
-      }
-      return -1*Integer.compare(size, c.size);
+    if (!isOut(x, y+1)) {
+      nei.add(new Node(arr[x][y+1], i*251+j));
+      floodfill(x, y+1);
+    }
+    if (!isOut(x, y-1)) {
+      nei.add(new Node(arr[x][y-1], i*251+j));
+      floodfill(x, y-1);
+    }
+
+  }
+  static boolean isOut(int x, int y) {
+    return x < 0 || y < 0 || x>=n || y>=n;
+  }
+  static class Node {
+    int id, count, size;
+    public Node(int i, int c, int s) {
+      id=i;
+      count=c;
+      size=s;
+    }
+    public Node(int i, int s) {
+      count = -1;
+      id = i;
+      size = s;
+    }
+    public boolean equals(Node n) {
+      return this.hashCode()==n.hashCode();
+    }
+    public int hashCode() {
+      return Objects.hash(id, count);
     }
   }
 }

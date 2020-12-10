@@ -41,11 +41,9 @@ public class MooTube {
     while (!q.isEmpty()) {
       int v = q.poll();
       for (Edge e : graph.get(v)) {
-        if (!visited[e.v]) {
-          if (e.w >= k) {
-            counter++;
-            q.add(e.v);
-          }
+        if (!visited[e.v] && e.w>=k) {
+          counter++;
+          q.add(e.v);
         }
         visited[e.v] = true;
       }

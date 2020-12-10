@@ -16,7 +16,7 @@ public class AutoComplete {
       words[i] = br.readLine();
       map.put(words[i], i+1);
     }
-    map.put("!", -1);115438
+    map.put("!", -1);
     Arrays.sort(words);
     for (int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());

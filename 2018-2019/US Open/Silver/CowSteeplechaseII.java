@@ -53,6 +53,8 @@ public class CowSteeplechaseII {
         one = new Point(a, b);
         two = new Point(c, d);
       }
+
+
       else {
         one = new Point(c, d);
         two = new Point(a, b);

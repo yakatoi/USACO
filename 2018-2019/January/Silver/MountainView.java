@@ -4,44 +4,37 @@ import java.io.*;
 public class MountainView {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("mountains.in"));
-    PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("mountains.out")));
-    int n = Integer.parseInt(br.readLine());
-    Pair[] arr = new Pair[n];
+    PrintWriter pw = new PrintWriter(new FileWriter("mountains.out"));
+    int n  = Integer.parseInt(br.readLine());
+    Mountain[] arr = new Mountain[n];
     for (int i = 0; i < n; i++) {
-      String[] inps = br.readLine().split(" ");
-      int a = Integer.parseInt(inps[0]);
-      int b = Integer.parseInt(inps[1]);
-      arr[i] = new Pair(a-b, a+b);
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      int a = Integer.parseInt(st.nextToken());
+      int b = Integer.parseInt(st.nextToken());
+      arr[i] = new Mountain(a, b);
     }
     Arrays.sort(arr);
-    int large = arr[0].y;
+    //System.out.println(Arrays.toString(arr));
+    int largest = Integer.MIN_VALUE;
     int counter = 0;
-    for (int i = 1; i < n; i++) {
-      if (large >= arr[i].y) {
-        counter++;
-      }
-      large = Math.max(large, arr[i].y);
+    for (Mountain m : arr) {
+      if (m.b > largest) counter++;
+      largest = Math.max(largest, m.b);
     }
-    pw.println(n-counter);
+    pw.println(counter);
     pw.close();
   }
-
-  public static class Pair implements Comparable<Pair>{
-    public int x;
-    public int y;
-
-    public Pair(int x, int y) {
-      this.x = x;
-      this.y = y;
+  static class Mountain implements Comparable<Mountain> {
+    int a, b, x, y;
+    public Mountain(int xx, int yy) {
+      x = xx;
+      y = yy;
+      a = x - y;
+      b = x+y;
     }
-
-    public int compareTo(Pair p) {
-      if (p.x==x) {
-        return -1*Integer.compare(y, p.y);
-      }
-      return Integer.compare(x, p.x);
+    public int compareTo(Mountain m) {
+      if (a==m.a) return Integer.compare(y, m.y);
+      return Integer.compare(a, m.a);
     }
-
   }
-
 }

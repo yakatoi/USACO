@@ -35,7 +35,6 @@ public class ConventionII {
       }
       else {
         while (i < n && endTime > arr[i][1]) {
-
           pq.add(arr[i][0]);
           i++;
         }

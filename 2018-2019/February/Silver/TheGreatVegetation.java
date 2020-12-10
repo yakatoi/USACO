@@ -2,11 +2,11 @@ import java.util.*;
 import java.io.*;
 
 public class TheGreatVegetation {
-  public static HashMap<Integer, HashSet<Edge>> graph = new HashMap<Integer, HashSet<Edge>>();
-  public static int[] type;
-  public static boolean screwup;
+  static HashMap<Integer, HashSet<Edge>> graph = new HashMap<Integer, HashSet<Edge>>();
+  static int[] type;
+  static boolean screwup;
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("revegetate.in"));
     PrintWriter pw = new PrintWriter(new FileWriter("revegetate.out"));
     StringTokenizer st = new StringTokenizer(br.readLine());
     int n = Integer.parseInt(st.nextToken());

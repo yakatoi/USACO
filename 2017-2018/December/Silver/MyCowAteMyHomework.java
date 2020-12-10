@@ -34,6 +34,7 @@ public class MyCowAteMyHomework {
       //System.out.println(i + " " + ((double) comp)/(n-i-2));
       max = Math.max(max, ((double) comp)/(n-i-2));
     }
+
     Set<Integer> set = new HashSet<Integer>();
     //System.out.println(max);
     for (int i = 0; i < n-2; i++) {

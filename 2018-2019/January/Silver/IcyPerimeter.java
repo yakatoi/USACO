@@ -31,7 +31,6 @@ public class IcyPerimeter {
       for (int j = 0; j < n; j++) {
         if (!visited[i][j] && arr[i][j]==1) {
           set.add(new Pair(floodfill(i, j, new Pair(0, 0))));
-          if (set.contains())
         }
       }
     }

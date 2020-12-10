@@ -4,81 +4,62 @@ import java.io.*;
 public class PaintingTheFence {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("paint.in"));
-    PrintWriter pw = new PrintWriter(new FileWriter("paint.out"));
-    int n = Integer.parseInt(br.readLine());
-    HashSet<Integer> nec = new HashSet<Integer>();
-    int p = 0;
-    nec.add(p);
-    int[] a = new int[n];
-    String[] b = new String[n];
+    PrintWriter pw= new PrintWriter(new FileWriter("paint.out"));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int n = Integer.parseInt(st.nextToken());
+    int k = Integer.parseInt(st.nextToken());
+    int[] arr = new int[n];
     for (int i = 0; i < n; i++) {
-      StringTokenizer st = new StringTokenizer(br.readLine());
-      int move = Integer.parseInt(st.nextToken());
-      String dir = st.nextToken();
-      a[i] = move;
-      b[i] = dir;
-      if (dir.equals("R")) {
-        p+=move;
+      st = new StringTokenizer(br.readLine());
+      int inp = Integer.parseInt(st.nextToken());
+      if (st.nextToken().equals("L")) inp*=-1;
+      arr[i] = inp;
+    }
+    TreeMap<Integer, Integer> map = new TreeMap<Integer, Integer>();
+    map.put(0,0);
+    int x = 0;
+    for (int ele: arr) {
+      x+=ele;
+      map.put(x, 0);
+    }
+    x = 0;
+    for (int ele : arr) {
+      if (ele > 0) {
+        map.put(x, map.get(x)+1);
+        x+=ele;
+        map.put(x, map.get(x)-1);
       }
       else {
-        p-=move;
-      }
-      nec.add(p);
-    }
-    //System.out.println(nec);
-    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-    for (int po : nec) {
-      map.put(po, 0);
-    }
-    //System.out.println(map);
-    int cur = 0;
-    for (int i = 0; i < n; i++) {
-      int prev = cur;
-      if (b[i].equals("R")) {
-        cur+=a[i];
-      }
-      else {
-        cur-=a[i];
-      }
-      if (prev < cur) {
-        map.put(prev, map.get(prev) - 1);
-        map.put(cur, map.get(cur) + 1);
-      }
-      else {
-        map.put(cur, map.get(cur) - 1);
-        map.put(prev, map.get(prev) + 1);
+        map.put(x, map.get(x)-1);
+        x+=ele;
+        map.put(x, map.get(x)+1);
       }
     }
-    ArrayList<Integer> keys = new ArrayList<Integer>(map.keySet());
-    Collections.sort(keys, Collections.reverseOrder());
-    int ans = 0;
+    int prevval = 0;
+    for (int key: map.keySet()) {
+      map.put(key, map.get(key)+prevval);
+      prevval = map.get(key);
+    }
+    ArrayList<Integer> values = new ArrayList<Integer>();
     int sum = 0;
-    for (int i = 0; i < keys.size()-1; i++) {
-      sum+=map.get(keys.get(i));
-      if (sum >= 2) {
-        ans+=keys.get(i) - keys.get(i+1);
+    int start = Integer.MAX_VALUE;
+    for (int key : map.keySet()) {
+      int val = map.get(key);
+      if (start==Integer.MAX_VALUE && val >= k) {
+        start = key;
+      }
+      else if (start!=Integer.MAX_VALUE && val < k) {
+        values.add(start);
+        values.add(key);
+        start = Integer.MAX_VALUE;
       }
     }
-    pw.println(ans);
+    for (int i = 1; i < values.size(); i+=2) {
+      sum+=values.get(i)-values.get(i-1);
+    }
+    pw.println(sum);
     pw.close();
-  }
-  public static class Entry implements Comparable<Entry> {
-    public int pos;
-    public int tim;
-
-    public Entry(int p, int t) {
-      pos = p;
-      tim = t;
-    }
-    public Entry(int p) {
-      pos = p;
-      tim = 0;
-    }
-    public int compareTo(Entry e) {
-      return Integer.compare(pos, e.pos);
-    }
-    public String toString() {
-      return "(" + pos + ", " + tim + ")";
-    }
+    // System.out.println(values);
+    // System.out.println(map);
   }
 }
