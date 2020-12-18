@@ -27,7 +27,6 @@ public class SnowBoots {
       while (arr[j] > cur.p) {
         j--;
       }
-
       if (j<=i) {
         cur = new Boot(q.poll());
       }

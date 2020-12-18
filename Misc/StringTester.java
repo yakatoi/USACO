@@ -2,11 +2,12 @@ import java.util.*;
 public class StringTester
 {
   public static void main(String[] args) {
-
-    int n = 10;
-    while (n --> 0) {
-      System.out.println(n);
-    }
+    int a = 5;
+    int b = 7;
+    System.out.println(a + " " + b);
+    // b^=a^=b;
+    b^=a^=b^=a^=b;
+    System.out.println(a + " " + b);
 
   }
 }

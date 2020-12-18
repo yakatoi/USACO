@@ -17,9 +17,6 @@ public class FairPhotography {
       arr[i+1] = new Cow(in, str);
     }
     Arrays.sort(arr, (a, b) -> (Integer.compare(a.p, b.p)));
-    // for (int i = 0; i <= n; i++) {
-    //   System.out.println(arr[i].p + " " + arr[i].b);
-    // }
     for (int i = 1; i <= n; i++) {
       if (arr[i].b== 1) g[i]++;
       else h[i]++;
@@ -28,11 +25,8 @@ public class FairPhotography {
     }
     int[] gminush = new int[n+1];
     for (int i = 1; i <= n; i++) {
-      gminush[i] = (g[i] - h[i])*-1;
+      gminush[i] = h[i] - g[i];
     }
-    // System.out.println(Arrays.toString(g));
-    // System.out.println(Arrays.toString(h));
-    // System.out.println(Arrays.toString(gminush));
     HashMap<Integer, Pair> map = new HashMap<Integer, Pair>();
     for (int i = 1; i <= n; i++) {
       if (!map.keySet().contains(gminush[i])) map.put(gminush[i], new Pair(i, i));

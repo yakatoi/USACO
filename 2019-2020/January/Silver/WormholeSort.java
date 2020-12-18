@@ -53,7 +53,7 @@ public class WormholeSort {
     int hi = (int) Math.pow(10, 9);
     int ans = -1;
     while (lo <= hi) {
-      int mid = (hi+lo)/2;
+      int mid = (hi+lo)/2;84040
       if (binarySearch(mid)) {
         ans = mid;
         lo = mid+1;

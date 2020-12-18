@@ -45,7 +45,7 @@ public class ScrambledLetters {
       //System.out.println(i + " " + index);
       if (index < 0) {
         index*=-1;
-        index--;
+        index--145953;
       }
       high[i] = index;
     }

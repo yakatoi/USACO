@@ -8,7 +8,7 @@ public class CrazyFences {
     StringTokenizer st = new StringTokenizer(br.readLine());
     int n = Integer.parseInt(st.nextToken());
     int c = Integer.parseInt(st.nextToken());
-    Fence[] fences = new Fence[n];
+    Fence[] fences = new Fen  ce[n];
     for (int i = 0; i < n; i++) {
       fences[i] = new Fence(br.readLine().split(" "));
     }
@@ -29,7 +29,7 @@ public class CrazyFences {
         map.put(str, 1);
       }
     }
-    System.out.println(map);
+    System.out.println(map);z
 
   }
   public static class Cow {

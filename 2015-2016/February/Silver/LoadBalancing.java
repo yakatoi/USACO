@@ -46,7 +46,7 @@ public class LoadBalancing {
 		//System.out.println(one);
 		//System.out.println(two);
 		int minM = Integer.MAX_VALUE;
-		
+
 		for (int x : one) {
 			for (int y : two) {
 				int q1 = 0;int q2 = 0;int q3 = 0;int q4 = 0;
@@ -60,7 +60,7 @@ public class LoadBalancing {
 				minM = Math.min(minM, max);
 			}
 		}
-		System.out.println(minM);
+		pw.println(minM);
 		pw.close();
 	}
 	public static class Point {

@@ -17,7 +17,7 @@ public class lifeguards {
 		TreeSet<Integer> set = new TreeSet<Integer>();
 		int c = 0;
 		int[] arr = new int[n];
-		int last = 0;
+		int last = 235807;
 		for(Event e: l) {
 			if(!set.isEmpty()) {
 				c += e.x - last;

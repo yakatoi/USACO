@@ -3,32 +3,41 @@ import java.util.*;
 
 public class BerryPicking {
   public static int n, k;
-  public static int[] arr;
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("berries.in"));
     PrintWriter pw = new PrintWriter(new FileWriter("berries.out"));
     StringTokenizer st = new StringTokenizer(br.readLine());
     n = Integer.parseInt(st.nextToken());
     k = Integer.parseInt(st.nextToken());
-    arr = Arrays.stream(br.readLine().split(" ")).mapToInt(x -> Integer.parseInt(x)*-1).toArray();
-    Arrays.sort(arr);
-    for (int i = 0; i < n; i++) arr[i]*=-1;
-    System.out.println(Arrays.toString(arr));
-  }
-  public static int check(int b) {
-    int counter =0;
-    int i = 0;
-    TreeMap<Integer, Integer> map = new TreeMap<Integer>();
-    while (i < n) {
-      add(map, b, arr[i]/b);
-      counter+=arr[i]/b;
-      arr[i] = arr[i] % b;
-      if (counter <)
+    ArrayList<Integer> al = new ArrayList<Integer>();
+    for (String ele : br.readLine().split(" ")) {
+      al.add(Integer.parseInt(ele));
     }
-
-  }
-  public static void add(HashMap<Integer> map, int i, int j) {
-    if (map.keySet().contains(i)) map.put(i, map.get(i) + j);
-    map.put(i, j);
+    Collections.sort(al, Collections.reverseOrder());
+    while (al.size() < k) {
+      int x = al.get(0);
+      al.remove(Integer.valueOf(x));
+      al.add(x/2);
+      al.add((x+1)/2);
+      Collections.sort(al, Collections.reverseOrder());
+    }
+    System.out.println(al);
+    int bef = 0; int newBef = 0;
+    for (int i = k/2; i < k; i++) newBef+=al.get(i);
+    do {
+      bef = newBef;
+      int x = al.get(0);
+      al.remove(Integer.valueOf(x));
+      al.add(x/2);
+      al.add((x+1)/2);
+      Collections.sort(al, Collections.reverseOrder());
+      newBef = 0;
+      for (int i = k/2; i < k; i++) newBef+=al.get(i);
+    }
+    while (newBef > bef);
+    newBef  = Math.max(bef, newBef);
+    System.out.println(newBef);
+    pw.println(newBef);
+    pw.close();
   }
 }

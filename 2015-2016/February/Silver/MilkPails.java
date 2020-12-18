@@ -21,7 +21,6 @@ public class MilkPails {
          }
          for (int i = 0; i < x+1; i++) {
             for (int j = 0; j < y+1; j++) {
-               
                if (poss[i][j]==1) {
                   pos[i][0] = 1;
                   pos[0][j] = 1;
@@ -29,17 +28,17 @@ public class MilkPails {
                   pos[i][y] = 1;
                   if (i + j <= y) {
                      pos[0][i+j] = 1;
-                     }
+                  }
                   else {
                      pos[i+j-y][y] = 1;
-                     }
+                  }
                   if (i + j <= x) {
                      pos[i+j][0] = 1;
-                     }
+                   }
                   else {
                      pos[x][i+j-x] = 1;
                      }
-                  }
+                }
                }
             }
          poss = pos.clone();
