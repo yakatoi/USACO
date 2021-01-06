@@ -23,7 +23,7 @@ public class IcyPerimeter {
     for (int i = 0; i < n; i++) {
       String[] inp = br.readLine().split("");
       for (int j = 0; j < n; j++) {
-        arr[i][j] = inp[j].equals(".") ? 0 : 1;
+        arr[i][j] = inp[j].equals(".")?0:1;b
       }
     }
     //print();

@@ -9,10 +9,11 @@ void dfs(int node, int mark[], int arr[]) {
   }
 }
 int main() {
-  // freopen("input.txt", "r", stdin);
-  freopen("swap.in", "r", stdin);
-  freopen("swap.out", "w", stdout);
-  cin >> n >> m >> k;
+  freopen("input.txt", "r", stdin);
+  // freopen("swap.in", "r", stdin);
+  // freopen("swap.out", "w", stdout);
+  cin >> n >> m;
+  k =2;
   counter = 1;
   int arr[n];
   int mark[n];

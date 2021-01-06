@@ -7,7 +7,7 @@ public class SocialDistancing {
   public static int[][] arr;
 
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("soc.txt"));
     PrintWriter pw = new PrintWriter(new FileWriter("socdist.out"));
     StringTokenizer st = new StringTokenizer(br.readLine());
     n = Integer.parseInt(st.nextToken());
@@ -35,10 +35,14 @@ public class SocialDistancing {
     }
     System.out.println(ans);
     pw.close();
+    if (!check(x)) {
+      else {
+        System.out.println()
+      }
+    }
   }
   public static boolean check(int d) {
     int prev = Integer.MIN_VALUE;
-
     int counter = 0;
     outer: for (int i = 0; i < m; i++) {
       while (Math.max(prev + d, arr[i][0]) <= arr[i][1]) {

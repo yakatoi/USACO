@@ -3,7 +3,7 @@ import java.io.*;
 
 public class FieldReduction {
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader("reduce.in"));
+    BufferedReader br = new BufferedReader(new FileReader("input.txt"));
     PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("reduce.out")));
     int n = Integer.parseInt(br.readLine());
     int[][] inp = new int[n][2];
@@ -39,6 +39,7 @@ public class FieldReduction {
         }
       }
     }
+    System.out.println(minArea);
     pw.println(minArea);
     pw.close();
   }

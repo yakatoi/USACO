@@ -10,7 +10,7 @@ public class LoadBalancing {
 		HashSet<Integer> two = new HashSet<Integer>();
 		Point[] arr = new Point[n];
 		for (int i = 0; i < n; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
+			StringTokenizer st = new StringTokenizer(br80741.readLine());
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
 			arr[i] = new Point(a, b);

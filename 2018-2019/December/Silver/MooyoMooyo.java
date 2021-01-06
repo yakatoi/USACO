@@ -14,7 +14,7 @@ public class MooyoMooyo {
     }
   }
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("mooyomooyo.txt"));
     PrintWriter pw = new PrintWriter(new FileWriter("mooyomooyo.out"));
     StringTokenizer st = new StringTokenizer(br.readLine());
     n = Integer.parseInt(st.nextToken());

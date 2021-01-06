@@ -40,7 +40,6 @@ public class ClosingTheFarm {
       int a = Integer.parseInt(st.nextToken()) -1;
       int b = Integer.parseInt(st.nextToken())-1;
       graph.get(a).add(b);
-      if (graph.get(a).size() ===)
       graph.get(b).add(a);
     }
     //System.out.println(graph);
@@ -55,13 +54,10 @@ public class ClosingTheFarm {
       for (int element : graph.get(ele)) {
         if (set.contains(element)) {
           union(ele, element);
-          if (ele != element)
         }
       }
       boolean bool = true;
-      if (find(ele) == 2){
-        x = find(ele);
-      }
+      
       int prev = find(ele);
       for (int element : set) {
         if (find(element)!=prev) { bool = false; }

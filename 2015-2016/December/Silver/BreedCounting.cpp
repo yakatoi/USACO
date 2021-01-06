@@ -1,35 +1,26 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-int n;
-void printArr(int arr[]) {
-  for (int i = 0; i < n; i++) {
-    cout << arr[i] << " ";
-  }
-  cout << endl;
-}
+int hol[100001];
+int gue[100001];
+int jer[100001];
+
 int main() {
-  freopen("input.txt", "r", stdin);
-  //freopen("template.in", "r", stdin);
-  //freopen("template.out", "w", stdout);
-  int q; cin >> n >> q;
-  int a[n+1];
-  int b[n+1];
-  int c[n+1];
-  a[0] = 0;
-  b[0] = 0;
-  c[0] = 0;
+  // freopen("input.txt", "r", stdin);
+  freopen("bcount.in", "r", stdin);
+  freopen("bcount.out", "w", stdout);
+  int n, q; cin >> n >> q;
   for (int i = 1; i <= n; i++) {
     int inp; cin >> inp;
-    a[i] = a[i-1] + inp==1?1:0;
-    b[i] = b[i-1] + inp==2?1:0;
-    c[i] = c[i-1] + inp==3?1:0;
+    if (inp==1) hol[i]++;
+    if (inp==2) gue[i]++;
+    if (inp ==3) jer[i]++;
+    hol[i]+=hol[i-1];
+    gue[i]+=gue[i-1];
+    jer[i]+=jer[i-1];
   }
-  printArr(a);
-  printArr(b);
-  printArr(c);
   for (int i = 0; i < q; i++) {
-    int x, y; cin >> x >> y;
-    cout << (a[y]-a[x-1]) << " " << (b[y]-b[x-1]) << " "  << (c[y]-c[x-1]) << endl;
+    int a, b; cin >> a >> b;
+    cout << hol[b]- hol[a-1] << " " <<gue[b] - gue[a-1] << " "<<jer[b] - jer[a-1] << endl;
   }
+
 }
