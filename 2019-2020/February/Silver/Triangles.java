@@ -56,7 +56,7 @@ public class Triangles {
     public int x;
     public int y;
     public Pair(int a, int b) {
-      x=a;
+      x= a;
       y=b;
     }
     public int compareTo(Pair p) {

@@ -4,7 +4,7 @@ import java.io.*;
 public class RecordKeeping {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("records.in"));
-    PrintWriter pw = new PrintWriter(new FileWriter("records.out"));
+    PrintWriter pw = new PrintWriter(new FileWriter("records.out"))
     int n = Integer.parseInt(br.readLine());
     Group[] arr = new Group[n];
     for (int i = 0; i < n; i++) arr[i] = new Group(br.readLine().split(" "));
