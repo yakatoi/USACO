@@ -22,8 +22,16 @@ int main() {
   ls.insert(arr[0].first); ls.insert(arr[1].first); ls.insert(arr[2].first); ls.insert(arr[3].first);
   rs.insert(arr[n-1].first); rs.insert(arr[n-2].first); rs.insert(arr[n-3].first); rs.insert(arr[n-4].first);
   sort(arr, arr+n, compy);
-  ds.insert(arr[0].second); ds.insert(arr[1].second); ds.insert(arr[2].second); ds.insert(arr[3].second);
-  us.insert(arr[n-1].second); us.insert(arr[n-2].second); us.insert(arr[n-3].second); us.insert(arr[n-4].second);
+  ds.insert(arr[0].second);
+  ds.insert(arr[1].second);
+  ds.insert(arr[2].second);
+  ds.insert(arr[3].second);
+
+
+  us.insert(arr[n-1].second);
+  us.insert(arr[n-2].second);
+  us.insert(arr[n-3].second);
+  us.insert(arr[n-4].second);
   int area = INT_MAX;
   for (int l : ls) {
     for (int r: rs) {

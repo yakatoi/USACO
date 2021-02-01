@@ -52,7 +52,7 @@ public class Moocast {
     public Cow(int a,int b, int c) {
       x=a;
       y=b;
-      pow =c;
+      pow=c;
     }
     public String toString() {
       return "(" + x + ", " + y +  ", " + pow + ")";

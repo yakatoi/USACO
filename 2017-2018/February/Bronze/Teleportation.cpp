@@ -1,5 +1,4 @@
-#include <iostream>
-#include <cstdio>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
@@ -12,5 +11,4 @@ int main() {
   ans = min(ans, abs(a -x)  + abs(y - b));
   ans = min(ans, abs(a -y)  + abs(x - b));
   cout << ans;
-
 }

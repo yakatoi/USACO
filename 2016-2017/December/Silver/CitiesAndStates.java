@@ -4,7 +4,7 @@ import java.io.*;
 public class CitiesAndStates {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("citystate.in"));
-    PrintWriter pw =new PrintWriter(new FileWriter("citystate.out"));
+    PrintWriter pw = new PrintWriter(new FileWriter("citystate.out"));
     int n = Integer.parseInt(br.readLine());
     HashMap<String, Integer> map = new HashMap<String, Integer>();
     for (int i = 0; i < n; i++) {
