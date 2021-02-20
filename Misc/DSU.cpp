@@ -13,6 +13,7 @@ int find(int x) {
   else {
     return parent[x] = find(parent[x]);
   }
+}
 void unite(int a, int b) {
   int c = find(a);
   int d = find(b);
