@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="USACO"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/sriha/Documents/USACO/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="USACO">
+				<Option output="C:/Users/sriha/Documents/USACO/cmake-build-debug/USACO.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/sriha/Documents/USACO/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/sriha/Documents/USACO/."/>
+					<Add directory="C:/Users/sriha/Documents/USACO/2020-2021/February"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 USACO"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="USACO/fast">
+				<Option output="C:/Users/sriha/Documents/USACO/cmake-build-debug/USACO.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/sriha/Documents/USACO/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/sriha/Documents/USACO/."/>
+					<Add directory="C:/Users/sriha/Documents/USACO/2020-2021/February"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 USACO/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/sriha/Documents/USACO/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/sriha/Documents/USACO/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/sriha/Documents/USACO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2012-2013/November/Bronze/Typo.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2013-2014/January/Bronze/BessieSlowsDown.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2013-2014/November/CombinationLock.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2014-2015/December/Bronze/Marathon.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2014-2015/December/Silver/CowJog.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2015-2016/December/Bronze/FencePainting.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2015-2016/December/Silver/BreedCounting.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2015-2016/December/Silver/HighCardWins.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2015-2016/February/Bronze/CircularBarn.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2015-2016/February/Bronze/MilkPails.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2015-2016/January/Bronze/MowingTheField.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2015-2016/January/Bronze/PromotionCounting.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2015-2016/January/Silver/SubsequencesSummingToSevens.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2015-2016/US Open/Bronze/FieldReduction.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2015-2016/US Open/Gold/ClosingTheFarm.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2015-2016/US Open/Silver/FieldReduction.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2016-2017/December/Bronze/BlockGame.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2016-2017/December/Bronze/SquarePasture.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2016-2017/December/Silver/CitiesAndStates.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2016-2017/December/Silver/Moocast.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2016-2017/February/Bronze/WhyDidTheCowCrossTheRoadIII.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2016-2017/February/Silver/WhyDidTheCowCrossTheRoad.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2016-2017/January/Silver/HoofPaperScissors.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2016-2017/US Open/Bronze/TheLostCow.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2017-2018/December/Bronze/MilkMeasurement.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2017-2018/December/Bronze/TheBovineShuffle.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2017-2018/December/Silver/MyCowAteMyHomework.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2017-2018/February/Bronze/Teleportation.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2017-2018/February/Silver/RestStops.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2017-2018/January/Bronze/Lifeguards.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2017-2018/January/Silver/MooTube.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2017-2018/US Open/Bronze/sol.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2017-2018/US Open/Silver/LemonadeLine.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2018-2019/December/Bronze/MixingMilk.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2018-2019/December/Silver/Convention.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2018-2019/December/Silver/ConventionII.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2018-2019/February/Silver/TheGreatVegetation.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2018-2019/January/Silver/MountainView.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2018-2019/US Open/Bronze/BucketBrigade.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2018-2019/US Open/Bronze/CowEvolution.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2019-2020/December/Bronze/CowGymnastics.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2019-2020/December/Bronze/LivestockLineup.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2019-2020/December/Bronze/WhereAmI.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2019-2020/December/Silver/MilkVisits.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2019-2020/December/Silver/SwapitySwapitySwap.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2019-2020/February/Bronze/Triangles.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2019-2020/January/Bronze/Photoshoot.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2019-2020/January/Bronze/WordProcessor.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2020-2021/December/DaisyChains.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2020-2021/December/DoYouKnowYourABCs.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2020-2021/February/YearOfTheCow.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2020-2021/February/test.h">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2020-2021/January/DanceMooves.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2020-2021/January/NoTimeToPaint.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/2020-2021/January/partial.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set1/p1.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set1/p10.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set1/p2.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set1/p3.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set1/p4.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set1/p5.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set1/p6.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set1/p7.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set1/p8.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set1/p9.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set2/p1.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set2/p10.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set2/p2.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set2/p3.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set2/p4.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set2/p5.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set2/p6.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set2/p7.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set2/p8.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set2/p9.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set3/p1.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set3/p10.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set3/p2.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set3/p3.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set3/p4.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set3/p5.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set3/p6.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set3/p7.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set3/p8.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set3/p9.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set4/p1.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set4/p10.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set4/p2.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set4/p3.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set4/p4.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set4/p5.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set4/p6.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set4/p7.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set4/p8.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set4/p9.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set5/p1.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set5/p10.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set5/p2.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set5/p3.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set5/p4.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set5/p5.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set5/p6.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set5/p7.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set5/p8.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Book/Set5/p9.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Misc/DSU.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Misc/DecoratingThePastures.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Misc/main.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/Misc/template.cpp">
+			<Option target="USACO"/>
+		</Unit>
+		<Unit filename="C:/Users/sriha/Documents/USACO/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

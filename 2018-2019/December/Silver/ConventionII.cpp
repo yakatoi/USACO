@@ -37,6 +37,5 @@ int main() {
       }
       ind++;
     }
-    while (q.is)
   }
 }
